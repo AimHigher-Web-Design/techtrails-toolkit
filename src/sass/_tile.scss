@@ -1,0 +1,159 @@
+$tile-width: 170px;
+$tile-height: 170px;
+
+.career-card-container {
+	flex-basis: 20%;
+	min-width: $tile-width;
+	max-width: 33%;
+
+	@include media-breakpoint-down(md) {
+		flex-basis: 25%;
+	}
+
+	@include media-breakpoint-down(sm) {
+		flex-basis: 33%;
+	}
+
+	@include media-breakpoint-down(xs) {
+		max-width: 100%;
+	}
+}
+
+.career-tile {
+	min-width: $tile-width;
+	max-width: $tile-width;
+	min-height: $tile-height;
+	overflow: hidden;
+	white-space: normal;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+
+	@include media-breakpoint-down(lg) {
+		min-width: 160px;
+		max-width: 160px;
+	}
+}
+
+@include media-breakpoint-down (sm) {
+	.career-hover {
+		margin: auto;
+	}
+}
+
+.career-hover {
+	@include hover-focus() {
+		.career-text,
+		.career-tile-body::before {
+			background-color: $yellow;
+		}
+		.career-tile-body::after {
+			background-color: $red;
+		}
+	}
+}
+
+.career-block {
+	flex: 1;
+	width: 100%;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.career-tile-img {
+	top: 0;
+	left: 50%;
+	z-index: 1;
+	width: 120%;
+	height: 200px;
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: contain;
+	transform: translateX(-50%);
+}
+
+.career-tile-body {
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 40px;
+
+	&::before {
+		position: absolute;
+		bottom: 50%;
+		left: 0;
+		z-index: 2;
+		width: 100%;
+		height: 30px;
+		content: " ";
+		background-color: $gray-100;
+		transform: skewY(-5deg);
+	}
+
+	&::after {
+		position: absolute;
+		bottom: calc(60% + 20px);
+		left: 0;
+		z-index: 0;
+		width: 100%;
+		height: 15px;
+		content: " ";
+		background-color: $gray-400;
+		transform: skewY(-5deg);
+	}
+}
+
+.career-text {
+	z-index: 2;
+	font-size: $font-size-xs;
+	color: $black;
+	background-color: $gray-100;
+}
+
+.helpful-link-card-container {
+	// stylelint-disable-next-line at-rule-no-unknown
+	@extend .career-card-container;
+
+	flex-basis: 25%;
+	min-width: $tile-width;
+	max-width: 33%;
+
+	@include media-breakpoint-down(md) {
+		flex-basis: 33%;
+	}
+
+	@include media-breakpoint-down(sm) {
+		flex-basis: 50%;
+		max-width: 50%;
+	}
+
+	@include media-breakpoint-down(xs) {
+		max-width: 100%;
+	}
+
+	.career-tile {
+		min-width: 220px;
+		max-width: 220px;
+		height: 190px;
+	}
+
+	.career-tile-body {
+		height: 60px;
+
+		&::before {
+			height: 40px;
+		}
+
+		&::after {
+			bottom: calc(60% + 30px);
+		}
+	}
+
+	.career-tile-img {
+		height: auto;
+	}
+
+	.career-block {
+		background-position: center;
+		background-size: cover;
+	}
+}

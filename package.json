@@ -1,0 +1,44 @@
+{
+	"name": "toolkittechtrailscom-gatsby",
+	"private": true,
+	"description": "Front end for tech trails toolkit",
+	"version": "1.0.0",
+	"author": "Dash Digital <support@dashdigital.com.au>",
+	"dependencies": {
+		"babel-polyfill": "^6.26.0",
+		"bootstrap": "^4.0.0",
+		"classnames": "^2.2.5",
+		"file-exists": "^5.0.1",
+		"gatsby": "^1.9.172",
+		"gatsby-image": "^1.0.4",
+		"gatsby-link": "^1.6.35",
+		"gatsby-plugin-glamor": "^1.6.11",
+		"gatsby-plugin-react-helmet": "^2.0.3",
+		"gatsby-plugin-sass": "^1.0.16",
+		"gatsby-source-wordpress": "^2.0.52",
+		"lodash": "^4.17.4",
+		"query-string": "^5.1.0",
+		"react-fontawesome": "^1.6.1",
+		"react-helmet": "^5.2.0",
+		"whatwg-fetch": "^2.0.3"
+	},
+	"license": "MIT",
+	"main": "n/a",
+	"scripts": {
+		"start": "NODE_ENV=dev gatsby develop",
+		"build": "gatsby build",
+		"develop": "NODE_ENV=dev gatsby develop",
+		"serve": "gatsby serve",
+		"format":
+			"prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"devDependencies": {
+		"dotenv": "^5.0.0",
+		"prettier": "^1.10.2",
+		"stylelint": "^8.4.0",
+		"stylelint-config-prettier": "^2.0.0",
+		"stylelint-config-standard": "^18.0.0",
+		"stylelint-order": "^0.8.0"
+	}
+}

@@ -1,0 +1,117 @@
+.modal-open {
+	overflow: hidden;
+}
+
+.career-modal {
+	overflow: visible;
+
+	.modal-body {
+		position: relative;
+		z-index: 2;
+		max-height: calc(80vh - 220px);
+		background-color: $white;
+
+		& > * {
+			max-height: inherit;
+		}
+
+		.overflow-container {
+			overflow: auto;
+		}
+	}
+
+	.career-modal-image {
+		top: -3 * $spacer;
+		right: 0;
+		z-index: 2;
+		width: 100%;
+	}
+
+	.modal-header {
+		height: 220px;
+		background-image: url("../images/dotty_bg_white.png");
+		background-position: center center;
+		background-size: cover;
+		border-bottom: none;
+		border-radius: 0;
+	}
+}
+
+.career-video {
+	position: relative;
+	display: block;
+
+	&::before {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		content: "";
+		background-color: rgba($gray-200, 0.5);
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	&::after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		height: 48px;
+		margin-top: auto;
+		margin-bottom: auto;
+		content: "";
+		background-image: url("../images/play.png");
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: contain;
+		opacity: 0.8;
+	}
+
+	@include hover-focus() {
+		img {
+			opacity: 0.3;
+		}
+
+		&::before {
+			background: none;
+		}
+
+		&::after {
+			opacity: 1;
+		}
+	}
+}
+
+@include media-breakpoint-down(md) {
+	.career-modal {
+		.modal-body {
+			max-height: calc(80vh - 200px);
+			overflow: auto;
+
+			.overflow-container {
+				overflow: visible;
+			}
+		}
+
+		.career-modal-image {
+			top: 0;
+			width: auto;
+			height: 100%;
+		}
+	}
+
+	.modal-height {
+		height: 200px;
+	}
+
+	[class^="col-"] {
+		height: auto;
+	}
+
+	.career-image-column {
+		height: 100%;
+	}
+}
