@@ -9,7 +9,7 @@ module.exports = {
 			resolve: "gatsby-source-wordpress",
 			options: {
 				baseUrl: `wp.toolkit.techtrails.org.au`,
-				protocol: "https",
+				protocol: "http",
 				hostingWPCOM: false,
 				useACF: true,
 				verboseOutput: true,
