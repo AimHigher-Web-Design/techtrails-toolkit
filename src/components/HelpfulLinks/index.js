@@ -2,7 +2,8 @@ import React from "react";
 import FontAwesome from "react-fontawesome";
 
 const resolveResource = (resource, index) => {
-	let iconName = "download";
+	let iconName = "download",
+	resourceLink = resource.resource_link;
 	switch (resource.resource_type) {
 		case "video":
 			iconName = "play-circle";
@@ -12,11 +13,15 @@ const resolveResource = (resource, index) => {
 			break;
 	}
 
+	if(resource.resource_type == 'file') {
+		resourceLink = resource.resource_link.replace('/wp-content/uploads/', 'https://wptoolkit.techtrails.org.au/wp-content/uploads/');
+	}
+
 	return (
 		<div key={index} className="helpful-link-card-container text-center my-3">
 			<a
 				className="btn btn-link p-0 career-hover"
-				href={resource.resource_link}
+				href={resourceLink}
 				target="_blank"
 				rel="noopener noreferrer"
 				data-label={resource.resource_name}
