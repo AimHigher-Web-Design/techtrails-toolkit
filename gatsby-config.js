@@ -1,6 +1,3 @@
-const env = process.env.DEPLOY_ENV || "dev";
-require("dotenv").config({ path: `./.env.${env}` });
-
 module.exports = {
 	siteMetadata: {
 		title: "Tech Trails Toolkit",
@@ -11,8 +8,8 @@ module.exports = {
 		{
 			resolve: "gatsby-source-wordpress",
 			options: {
-				baseUrl: `${process.env.WORDPRESS_URL}`,
-				protocol: "http",
+				baseUrl: `wp.toolkit.techtrails.org.au`,
+				protocol: "https",
 				hostingWPCOM: false,
 				useACF: true,
 				verboseOutput: true,

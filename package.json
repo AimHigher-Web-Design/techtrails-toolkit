@@ -1,9 +1,7 @@
 {
 	"name": "toolkittechtrailscom-gatsby",
-	"private": true,
 	"description": "Front end for tech trails toolkit",
 	"version": "1.0.0",
-	"author": "Dash Digital <support@dashdigital.com.au>",
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
 		"bootstrap": "^4.0.0",
@@ -25,9 +23,8 @@
 	"license": "MIT",
 	"main": "n/a",
 	"scripts": {
-		"start": "NODE_ENV=dev gatsby develop",
+		"start": "gatsby develop",
 		"build": "gatsby build",
-		"develop": "NODE_ENV=dev gatsby develop",
 		"serve": "gatsby serve",
 		"format":
 			"prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
