@@ -21,5 +21,12 @@ module.exports = {
 				precision: 6,
 			},
 		},
+		{
+			resolve: `gatsby-plugin-google-tagmanager`,
+			options: {
+				id: 'GTM-5FC94SL',
+				includeInDevelopment: true,
+			},
+		},
 	],
 };
