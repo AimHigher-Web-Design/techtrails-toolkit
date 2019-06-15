@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {graphql} from 'gatsby'
 import Helmet from "react-helmet";
 
 class PageTemplate extends Component {
