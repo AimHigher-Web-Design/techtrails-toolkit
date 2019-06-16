@@ -30,7 +30,7 @@ const resolveResource = (resource, index) => {
 					<div
 						className="career-block"
 						style={{
-							"background-image": `url(${resource.resource_image.url})`,
+							"background-image": `url(${resource.image})`,
 						}}
 					/>
 					<div className="position-relative career-tile-body">

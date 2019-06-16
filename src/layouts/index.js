@@ -33,6 +33,7 @@ class TemplateWrapper extends Component {
 	}
 
 	render() {
+		console.log(this.props)
 		const { data, children, history, location, maps } = this.props;
 		const { mainMenu, footerMenu, socialMenu, footerPage } = data;
 

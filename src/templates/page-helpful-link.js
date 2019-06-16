@@ -43,9 +43,7 @@ export const pageQuery = graphql`
 			acf {
 				resources {
 					resource_name
-					resource_image {
-						url
-					}
+					image
 					resource_link
 					resource_type
 				}
