@@ -16,6 +16,7 @@ const resolveResource = (resource, index) => {
 	if(resource.resource_type == 'file') {
 		resourceLink = resource.resource_link.replace('/wp-content/uploads/', 'https://wptoolkit.techtrails.org.au/wp-content/uploads/');
 	}
+	resource.image = resource.image.replace('http://wptoolkit.techtrails.org.au', 'https://wptoolkit.techtrails.org.au')
 
 	return (
 		<div key={index} className="helpful-link-card-container text-center my-3">
