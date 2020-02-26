@@ -1,18 +1,35 @@
+require('dotenv').config()
+
 module.exports = {
 	siteMetadata: {
 		title: "Tech Trails Toolkit",
+		siteUrl: process.env.SITE_URL,
 	},
 	plugins: [
 		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-glamor",
 		{
-			resolve: "gatsby-source-wordpress",
+			resolve: `gatsby-source-wordpress`,
 			options: {
-				baseUrl: `wptoolkit.techtrails.org.au`,
-				protocol: "https",
+				baseUrl: process.env.WP_URL,
+				protocol: process.env.WP_PROTOCOL,
 				hostingWPCOM: false,
 				useACF: true,
 				verboseOutput: true,
+				concurrentRequests: 5,
+				includedRoutes: [
+					'**/*/*/menus',
+					'**/*/*menu-locations',
+					'**/*/*/posts',
+					'**/*/*/pages',
+					'**/*/*/media',
+					'**/*/*/categories',
+					'**/*/*/careers',
+				],
+				searchAndReplaceContentUrls: {
+					sourceUrl: 'wptoolkit.techtrails.org.au',
+					replacementUrl: 'toolkit.techtrails.org.au',
+				},
 			},
 		},
 		{

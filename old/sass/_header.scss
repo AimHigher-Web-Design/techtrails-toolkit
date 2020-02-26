@@ -1,0 +1,50 @@
+@include media-breakpoint-up(md) {
+	.header-container {
+		margin-top: 2 * $spacer;
+	}
+
+	.header-bubble::before {
+		position: absolute;
+		top: -2 * $spacer;
+		left: 0;
+		width: 100%;
+		height: 6rem;
+		content: " ";
+		background-image: $body-circle-purple;
+		background-repeat: no-repeat;
+		background-position: 75% #{-4 * $spacer};
+		background-size: 7 * $spacer;
+	}
+
+	.career-menu {
+		width: 100%;
+		height: 3rem;
+		margin-top: -2 * $spacer;
+		overflow: hidden;
+
+		.menu-item {
+			font-size: 1.1rem;
+			color: $black;
+			background-color: $gray-100;
+			border-radius: 0.3rem 0.3rem 0px 0px;
+			cursor: pointer;
+			border: none;
+		}
+
+		.menu-item:nth-child(even) {
+			margin-left: 1rem;
+		}
+
+		.menu-item:hover {
+			background-color: $white;
+		}
+
+		.menu-item:active {
+			background-color: $white;
+		}
+	}
+}
+
+.logo-img {
+	max-height: 100px;
+}

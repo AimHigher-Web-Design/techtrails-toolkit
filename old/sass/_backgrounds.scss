@@ -1,0 +1,12 @@
+@include media-breakpoint-up(md) {
+	.dotty-bg {
+		background-image: $body-circle-yellow, $body-circle-green,
+			$body-circle-orange, $body-circle-teal;
+		background-repeat: no-repeat;
+		background-position: top 70vh right 10vw, top 25vh right -160px,
+			center bottom -280px, top 10vh left -120px;
+		background-size: 60px, 256px, 355px, 200px;
+	}
+}
+
+@include bg-variant(".bg-medium", $gray-200);

@@ -1,15 +1,23 @@
-import React from "react";
-import Link from "gatsby-link";
+import React, { Fragment } from 'react'
+import { graphql, Link } from 'gatsby'
+import Layout from '../components/layout'
 
-const NotFoundPage = () => (
-	<div className="container">
-		<h1>Oops! That page can't be found.</h1>
-		<p>
-			We cannot find what you are looking for. You may have mis-typed the
-			address, or the page may have been moved. Start at the{" "}
-			<Link to="/">home</Link> page to view the WITWA Techtrails Toolkit.
-		</p>
-	</div>
-);
+import NotFound from '../img/fourohfour.svg'
 
-export default NotFoundPage;
+export default class FourOhFour extends React.Component {
+	render() {
+		return (
+			<Layout>
+				<h1>Page Not Found</h1>
+				<div className="error-404">
+					<NotFound />
+					<p>
+						Looks like that page doesn't exist anymore or has moved. Try going back to
+						the <a href="/">home page</a> or selecting one of the options from our menu
+						instead.
+					</p>
+				</div>
+			</Layout>
+		)
+	}
+}

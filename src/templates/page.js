@@ -1,45 +1,33 @@
-import React, { Component } from "react";
-import Helmet from "react-helmet";
+import React, { Component } from 'react'
+import { graphql } from 'gatsby'
+import Layout from '../components/layout'
 
 class PageTemplate extends Component {
 	render() {
-		const siteMetadata = this.props.data.site.siteMetadata;
-		const currentPage = this.props.data.wordpressPage;
-
-		const { metadesc } = this.props.data.wordpressPage.yoast;
+		const currentPage = this.props.data.wordpressPage,
+			meta = {
+				name: currentPage.title,
+				slug: this.props.location.pathname,
+			}
 
 		return (
-			<div className="container">
-				<Helmet>
-					<html lang="en" />
-					<meta name="description" content={metadesc} />
-				</Helmet>
+			<Layout meta={meta}>
 				<h1 dangerouslySetInnerHTML={{ __html: currentPage.title }} />
-				<div dangerouslySetInnerHTML={{ __html: currentPage.content }} />
-			</div>
-		);
+				<div className="content" dangerouslySetInnerHTML={{ __html: content }} />
+			</Layout>
+		)
 	}
 }
 
-export default PageTemplate;
+export default PageTemplate
 
 export const pageQuery = graphql`
-	query currentPageQuery($id: String!) {
+	query($id: String!, $customMenu: String!) {
 		wordpressPage(id: { eq: $id }) {
 			title
 			content
-			date(formatString: "MMMM DD, YYYY")
+			slug
 			wordpress_id
-
-			yoast {
-				metadesc
-			}
-		}
-		site {
-			id
-			siteMetadata {
-				title
-			}
 		}
 	}
-`;
+`

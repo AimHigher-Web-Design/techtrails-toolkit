@@ -1,0 +1,137 @@
+.signup-modal {
+	label,
+	button {
+		font-weight: $font-weight-light;
+	}
+
+	legend {
+		flex: 0 0 30%;
+		max-width: 30%;
+		margin-bottom: 0;
+		font-size: $font-size-base;
+	}
+
+	.signup-header {
+		letter-spacing: 0.3 * $spacer;
+	}
+
+	.radio-field {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.form-check {
+		flex: 0 0 20%;
+		align-items: center;
+		max-width: 20%;
+		padding-left: 0;
+		margin: auto;
+		text-align: center;
+
+		// The first child is the legend
+
+		@include media-breakpoint-up(md) {
+			&:nth-child(2) {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		input[type="radio"] {
+			display: none;
+		}
+	}
+
+	.form-check-label {
+		color: $white;
+		cursor: pointer;
+		background-color: $primary;
+		border-color: $primary;
+		border-style: solid;
+		border-width: $btn-border-width;
+
+		@include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+		@include transition($btn-transition);
+
+		@include hover-focus {
+			text-decoration: none;
+			background-color: $secondary;
+			border-color: $secondary;
+		}
+
+		@include media-breakpoint-down(sm) {
+			width: 100%;
+		}
+	}
+
+	input:checked + .form-check-label {
+		text-decoration: none;
+		background-color: $secondary;
+		border-color: $secondary;
+	}
+
+	.form-group {
+		label {
+			flex-basis: 30%;
+			flex-shrink: 0;
+		}
+
+		input {
+			flex: 0 0 20%;
+			max-width: 20%;
+		}
+	}
+
+	.bypass-text {
+		font-size: $font-size-xs;
+		color: $red;
+		opacity: 0.7;
+
+		@include hover-focus {
+			opacity: 1;
+		}
+	}
+
+	@include media-breakpoint-down(sm) {
+		legend {
+			flex: 0 0 50%;
+			max-width: 50%;
+			margin-bottom: $spacer;
+		}
+
+		.form-check {
+			flex: 0 0 75%;
+			align-items: center;
+			max-width: 75%;
+			margin: auto;
+			margin-bottom: $spacer;
+		}
+
+		.form-group {
+			display: block;
+
+			label {
+				flex-basis: 30%;
+				flex-shrink: 0;
+			}
+
+			input {
+				flex: 0 0 75%;
+				max-width: 75%;
+				margin: auto;
+			}
+		}
+	}
+}
+
+.signup-modal-container {
+	max-width: 700px;
+
+	@media (max-width: 700px) {
+		max-width: calc(100vw - #{4 * $spacer});
+	}
+}
