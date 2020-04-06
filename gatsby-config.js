@@ -4,38 +4,21 @@ module.exports = {
 	siteMetadata: {
 		title: "Tech Trails Toolkit",
 		siteUrl: process.env.SITE_URL,
+		description: '',
 	},
 	plugins: [
-		"gatsby-plugin-react-helmet",
-		"gatsby-plugin-glamor",
+		'gatsby-plugin-sass',
 		{
-			resolve: `gatsby-source-wordpress`,
+			resolve: 'gatsby-plugin-react-svg',
 			options: {
-				baseUrl: process.env.WP_URL,
-				protocol: process.env.WP_PROTOCOL,
-				hostingWPCOM: false,
-				useACF: true,
-				verboseOutput: true,
-				concurrentRequests: 5,
-				includedRoutes: [
-					'**/*/*/menus',
-					'**/*/*menu-locations',
-					'**/*/*/posts',
-					'**/*/*/pages',
-					'**/*/*/media',
-					'**/*/*/categories',
-					'**/*/*/careers',
-				],
-				searchAndReplaceContentUrls: {
-					sourceUrl: 'wptoolkit.techtrails.org.au',
-					replacementUrl: 'toolkit.techtrails.org.au',
-				},
+				include: `./src/img`,
 			},
 		},
 		{
-			resolve: "gatsby-plugin-sass",
+			resolve: 'gatsby-source-filesystem',
 			options: {
-				precision: 6,
+				path: `${__dirname}/src/img`,
+				name: 'images',
 			},
 		},
 		{
@@ -45,5 +28,47 @@ module.exports = {
 				includeInDevelopment: true,
 			},
 		},
+		`gatsby-plugin-sharp`,
+		`gatsby-transformer-sharp`,
+		// {
+		// 	resolve: `gatsby-source-wordpress`,
+		// 	options: {
+		// 		baseUrl: process.env.WP_URL,
+		// 		protocol: process.env.WP_PROTOCOL,
+		// 		hostingWPCOM: false,
+		// 		useACF: true,
+		// 		verboseOutput: true,
+		// 		concurrentRequests: 5,
+		// 		includedRoutes: [
+		// 			'**/*/*/menus',
+		// 			'**/*/*menu-locations',
+		// 			'**/*/*/posts',
+		// 			'**/*/*/pages',
+		// 			'**/*/*/media',
+		// 			'**/*/*/categories',
+		// 			'**/*/*/careers',
+		// 		],
+		// 		searchAndReplaceContentUrls: {
+		// 			sourceUrl: 'wptoolkit.techtrails.org.au',
+		// 			replacementUrl: 'toolkit.techtrails.org.au',
+		// 		},
+		// 	},
+		// },
+		{
+			resolve: `gatsby-source-graphql`,
+			options: {
+			  typeName: `WPGraphQL`,
+			  fieldName: `wpgraphql`,
+			  url: `http://techtrails.local/graphql`,
+			  refetchInterval: 300,
+			},
+		},
+		`gatsby-plugin-react-helmet`,
+		{
+			resolve: 'gatsby-plugin-html-attributes',
+			options: {
+				lang: 'en',
+			},
+		},		
 	],
 };

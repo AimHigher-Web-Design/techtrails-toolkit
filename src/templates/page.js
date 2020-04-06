@@ -13,7 +13,7 @@ class PageTemplate extends Component {
 		return (
 			<Layout meta={meta}>
 				<h1 dangerouslySetInnerHTML={{ __html: currentPage.title }} />
-				<div className="content" dangerouslySetInnerHTML={{ __html: content }} />
+				<div className="content" dangerouslySetInnerHTML={{ __html: currentPage.content }} />
 			</Layout>
 		)
 	}
@@ -22,12 +22,14 @@ class PageTemplate extends Component {
 export default PageTemplate
 
 export const pageQuery = graphql`
-	query($id: String!, $customMenu: String!) {
-		wordpressPage(id: { eq: $id }) {
-			title
-			content
-			slug
-			wordpress_id
+	query($id: ID!) {
+		wpgraphql {
+			page(id: $id) {
+				title
+				content(format: RENDERED)
+				slug
+				pageId
+			}
 		}
 	}
 `

@@ -1,43 +1,77 @@
 import React from 'react'
 import { graphql, StaticQuery, Link } from 'gatsby'
-import { Facebook, Twitter, Youtube, Linkedin } from 'react-feather'
+import { Facebook, Twitter, Instagram, Linkedin } from 'react-feather'
 
 const SocialIcons = {
-	facebook: <Facebook />,
-	twitter: <Twitter />,
-	youtube: <Youtube />,
-	linkedin: <Linkedin />,
+	Facebook: <Facebook />,
+	Twitter: <Twitter />,
+	Instagram: <Instagram />,
+	LinkedIn: <Linkedin />,
 }
 
 const Footer = () => (
 	<StaticQuery
 		query={graphql`
 			query {
-				social: wordpressWpApiMenusMenusItems(name: { eq: "Social Menu" }) {
-					items {
-						title
-						classes
-						url
+				social: wpgraphql {
+					menus(where: {slug: "social-media-menu"}) {
+						edges {
+							node {
+								menuItems {
+									edges {
+										node {
+											url
+											label
+											menuIcons {
+												icon {
+													sourceUrl
+												}
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
-				footer: wordpressWpApiMenusMenusItems(name: { eq: "Footer Menu" }) {
-					items {
-						title
-						url
+				footer: wpgraphql {
+					menus(where: {slug: "footer-menu"}) {
+						edges {
+							node {
+								menuItems {
+									edges {
+										node {
+											url
+											label
+											target
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				footerBlurb: wpgraphql {
+					page(id: "footer", idType: URI) {
+						content(format: RENDERED)
 					}
 				}
 			}
 		`}
 		render={data => {
-			const social = data.social.items,
-				footer = data.footer.items
+			const footerBlurb = `${data.footerBlurb.page.content}<p>© ${new Date().getFullYear()}, Techtrails</p>`,
+			social = data.social.menus.edges[0].node.menuItems.edges,
+			footer = data.footer.menus.edges[0].node.menuItems.edges
+
+			console.log(social)
+
 			return (
 					<footer>
 							<nav>
 								<ul>
 									{footer.map(item => (
-										<li key={item.url}>
-											<Link to={item.url}>{item.title}</Link>
+										<li key={item.node.url}>
+											<a href={item.node.url} target={item.node.target}>{item.node.label}</a>
 										</li>
 									))}
 								</ul>
@@ -46,15 +80,16 @@ const Footer = () => (
 						<nav>
 							<ul>
 								{social.map(item => (
-									<li key={item.classes} className={item.classes}>
-										<a href={item.url} target="_blank">
-											<span>{item.title}</span>
-											{SocialIcons[item.classes]}
+									<li key={item.node.url}>
+										<a href={item.node.url} target="_blank">
+											<span>{item.node.label}</span>
+											{SocialIcons[item.node.label]}
 										</a>
 									</li>
 								))}
 							</ul>
 						</nav>
+						<div className="copyright" dangerouslySetInnerHTML={{__html: footerBlurb}} />
 					</footer>
 			)
 		}}

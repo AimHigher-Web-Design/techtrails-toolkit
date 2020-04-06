@@ -7,7 +7,7 @@ import Footer from './footer'
 
 // import '../scss/style.scss'
 
-// import Logo from '../img/logo.jpg'
+import Logo from '../img/logo.jpg'
 // import Favicon from '../img/favicon.png'
 
 const Layout = ({ children, meta, itemtype, itemscope, classes }) => (
@@ -21,19 +21,17 @@ const Layout = ({ children, meta, itemtype, itemscope, classes }) => (
 						siteUrl
 					}
 				}
-				allWordpressSiteMetadata {
-					edges {
-						node {
-							name
-							description
-							url
-						}
+				wpgraphql {
+					generalSettings {
+						description
+						title
+						url
 					}
 				}
 			}
 		`}
 		render={data => {
-			let defaultMeta = data.site.siteMetadata
+			let defaultMeta = data.wpgraphql.generalSettings
 			meta = meta == undefined ? {} : meta
 
 			let metaInfo = {
@@ -41,13 +39,13 @@ const Layout = ({ children, meta, itemtype, itemscope, classes }) => (
 				description: meta.description || defaultMeta.description,
 				image: meta.image || Logo,
 				slug: meta.slug || '/',
-				siteUrl: defaultMeta.siteUrl,
+				siteUrl: defaultMeta.url,
 				extras: meta.extras || [],
 			}
 
 			return (
 				<Fragment>
-					<Meta {...metaInfo} />
+					{/* <Meta {...metaInfo} /> */}
 					<Header />
 					<main id="main" className={classes} itemType={itemtype}>
 						{children}
@@ -66,11 +64,11 @@ const Meta = ({ name, description, slug, image, siteUrl, extras }) => (
 		<link rel="canonical" href={siteUrl + slug} />
 
 		<meta name="twitter:card" content="summary_large_image" />
-		<link rel="shortcut icon" href={Favicon} />
+		{/* <link rel="shortcut icon" href={Favicon} />
 		<link rel="icon" sizes="192x192" href={Favicon} />
 		<link rel="apple-touch-icon" href={Favicon} />
 		<meta name="theme-color" content="#003462" />
-		<link rel="mask-icon" href={Favicon} color="#003462" />
+		<link rel="mask-icon" href={Favicon} color="#003462" /> */}
 		<base href="/" />
 
 		{/* Facebook */}
