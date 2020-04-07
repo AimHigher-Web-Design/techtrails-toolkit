@@ -7,6 +7,7 @@ exports.createPages = async function({ actions, graphql }) {
 						node {
 							id
 							slug
+							isFrontPage
 						}
 					}
 				}
@@ -68,6 +69,10 @@ exports.createPages = async function({ actions, graphql }) {
 		}
 	`).then(res => {
 		res.data.wpgraphql.pages.edges.forEach(edge => {
+			if(edge.node.isFrontPage) {
+				return
+			}
+
 			actions.createPage({
 				path: `${edge.node.slug}`,
 				component: require.resolve(`./src/templates/page.js`),

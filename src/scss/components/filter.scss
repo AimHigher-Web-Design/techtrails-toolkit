@@ -1,0 +1,214 @@
+@import '../variables.scss';
+
+.modal {
+	background: $white;
+	border: 5px solid $purple;
+	border-radius: 20px;
+	display: grid;
+	grid-template-rows: 1fr auto;
+	grid-template-areas: 'question question' 'button-b button-n';
+	grid-gap: 20px;
+	padding: 30px;
+	position: fixed;
+	top: 10vh;
+	right: 10vw;
+	left: 10vw;
+	max-height: 90vh;
+
+	button, .btn {
+		@extend %button;
+		@extend %button-primary;
+
+		font-size: 1em;
+		justify-self: start;
+		margin: 0;
+
+		&[disabled] {
+			filter: grayscale(100%);
+			opacity: 0.5;
+		}
+
+		&.hide {
+			display: none;
+		}
+	}
+
+	.back {
+		grid-area: button-b;
+	}
+
+	.next, .end {
+		grid-area: button-n;
+		justify-self: end;
+	}
+
+	.steps {
+		grid-area: question;
+	}
+
+	section {
+		display: none;
+	
+		&.current {
+			display: block;
+		}
+	}
+
+	fieldset {
+		border: none;
+		margin: 0;
+		padding: 0;
+
+		&.sentences {
+			display: none;
+
+			&.selected {
+				display: block;
+			}
+		}
+
+	
+		> div {
+			display: grid;
+			grid-template-columns: 1fr 2fr;
+			grid-template-rows: auto auto;
+			grid-template-areas: 'question question' 'img opts';
+		}
+
+		ul, li {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		legend {
+			$size: 50px;
+	
+			background: $blue;
+			border: none;
+			border-radius: 20px;
+			color: $main;
+			grid-area: question;
+			font-size: 1.2em;
+			padding: 30px;
+			margin: 0 30px $size;
+			position: relative;
+			text-align: center;
+	
+			&:before {
+				content: "";
+				position: absolute;
+				left: $size;
+				bottom: (-1 * $size) + 20px;
+				width: 0;
+				height: 0;
+				border-top: $size solid $blue;
+				border-right: $size solid transparent;
+				transform: rotate(10deg);
+			}
+		}
+	
+		.opts {
+			grid-area: opts;
+		}
+
+		img {
+			grid-area: img;
+			height: 250px;
+		}
+	}
+
+	.opts {
+		input {
+			&[type="radio"] {
+				display: none;
+
+				& + label {
+					cursor: pointer;
+					display: flex;
+					align-items: center;
+					font-size: 1em;
+					margin: 10px 0;
+					position: relative;
+					padding: 10px 0;
+
+					&:before {
+						content: '';
+						border: 2px solid $main;
+						border-radius: 50%;
+						display: block;
+						flex-shrink: 0;
+						margin-right: 20px;
+						height: 1em;
+						width: 1em;
+					}
+
+					&:after {
+						background: $blue;
+						border-radius: 50%;
+						height: calc(1em - 4px);
+						width: calc(1em - 4px);
+						position: absolute;
+						top: calc(50% - 0.5em + 2px);
+						left: 4px;
+					}
+				}
+
+				&:checked {
+					& + label {
+						&:after {
+							content: '';
+						}
+					}
+				}
+			}
+		}
+
+		&.subjects {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			grid-template-rows: 1fr 1fr;
+			grid-gap: 10px;
+
+			li {
+				align-self: stretch;
+			}
+
+			label {
+				background: var(--subject);	
+				border: 5px solid transparent;
+				color: $white;
+				text-shadow: 1px 1px 0.5px $main;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-weight: bold;
+				height: 100%;
+				text-align: center;
+				opacity: 0.8;
+			}
+
+			input[type="radio"] {
+				+ label {
+					margin: 0;
+					padding: 10px;
+
+					&:before {
+						content: normal;
+					}
+				}
+				
+				&:checked {
+					+ label {
+						border-color: $main;
+						opacity: 1;
+
+						&:after {
+							content: normal;
+						}
+					}
+				}
+			}
+		}
+	}
+}
