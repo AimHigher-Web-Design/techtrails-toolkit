@@ -1,6 +1,6 @@
 module.exports = {
 	extends: ['standard', 'prettier'],
-	plugins: ['standard', 'react'],
+	plugins: ['standard', 'react', 'graphql'],
 	rules: {
 		'no-var': 'error', // optional, recommended when using es6+
 		'no-unused-vars': 1, // recommended

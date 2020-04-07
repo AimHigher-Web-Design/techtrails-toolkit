@@ -63,8 +63,6 @@ const Footer = () => (
 			social = data.social.menus.edges[0].node.menuItems.edges,
 			footer = data.footer.menus.edges[0].node.menuItems.edges
 
-			console.log(social)
-
 			return (
 					<footer>
 							<nav>

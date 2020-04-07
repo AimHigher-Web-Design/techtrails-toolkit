@@ -1,0 +1,67 @@
+$font_regular: 'Roboto', Arial, sans-serif;
+$font_headings: 'Roboto', Arial, sans-serif;
+
+$yellow: #F9ED31;
+$blue: #00A9A3;
+$purple: #6F2B8D;
+$green: #BED73B;
+$orange: #F15A29;
+$maroon: #BE1E2D;
+
+//Colours
+$primary: $yellow;
+$secondary: $blue;
+
+//Neutrals
+$main: #000000;
+$white: #ffffff;
+$grey: #666666;
+
+//Extends
+%button {
+	border-radius: 10em;
+	cursor: pointer;
+	font-family: $font_regular;
+	font-size: 1.2em;
+	line-height: 1.2;
+	padding: 0.5em 1.5em;
+	text-decoration: none;
+}
+
+%button-primary {
+	background: $blue;
+	border: 3px solid $blue;
+	color: $white;
+
+	&:active,
+	&:hover,
+	&:focus {
+		background: $white;
+		color: $blue;
+	}
+}
+
+%button-secondary {
+	background: $yellow;
+	border: 3px solid $yellow;
+	color: $main;
+
+	&:active,
+	&:hover,
+	&:focus {
+		background: $blue;
+		color: $white;
+	}
+}
+
+%button-neutral {
+	background: transparent;
+	border: 3px solid transparent;
+	color: $orange;
+
+	&:active,
+	&:hover,
+	&:focus {
+		border-color: $orange;
+	}
+}

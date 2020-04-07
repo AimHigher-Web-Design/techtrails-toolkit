@@ -1,0 +1,149 @@
+@import './variables.scss';
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: italic;
+	font-weight: 400;
+	src: url('../fonts/Roboto-Italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: normal;
+	font-weight: 700;
+	src: url('../fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Roboto';
+	font-style: italic;
+	font-weight: 700;
+	src: url('../fonts/Roboto-BoldItalic.ttf') format('truetype');
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	--cta: #{$secondary};
+	--cta-text: #fff;
+
+	color: $main;
+	font-family: $font_regular;
+	font-size: 18px;
+	margin: 0;
+	overflow-x: hidden;
+	width: 100vw;
+	max-width: 100vw;
+}
+
+a {
+	color: $blue;
+	text-decoration-skip-ink: auto;
+
+	&:active,
+	&:hover,
+	&:focus {
+		background: $yellow;
+		text-decoration: none;
+	}
+
+	&.btn {
+		@extend %button;
+		@extend %button-secondary;
+		display: inline-block;
+		margin: 10px 0;
+	}
+}
+
+em,
+i {
+	font-style: italic;
+}
+
+strong,
+b {
+	font-weight: bold;
+}
+
+blockquote {
+	border: 5px solid $secondary;
+	color: $secondary;
+	display: inline-block;
+	font: $font_headings;
+	font-size: 1.3em;
+	padding: 15px 20px;
+	margin: 0 0 0 50px;
+
+	p {
+		&:first-child {
+			margin-top: 0;
+		}
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+dt {
+	font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: $font_headings;
+}
+
+h1 {
+	font-size: 2em;
+	font-weight: bold;
+	margin-top: 0;
+}
+
+h2 {
+	font-size: 1.8em;
+	font-weight: bold;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1.3em;
+}
+
+h5 {
+	font-size: 1.2em;
+}
+
+nav {
+	ul,
+	li {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+img,
+svg {
+	max-width: 100%;
+}
+
+//IE Fixes
+main {
+	display: block;
+}

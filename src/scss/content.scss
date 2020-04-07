@@ -1,0 +1,239 @@
+@import './variables.scss';
+
+main {
+	--background: url('/img/background.png');
+
+	margin: 0 auto;
+	width: 90vw;
+	max-width: 1200px;
+}
+
+.colour-container {
+	background: var(--background);
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	padding: 20px 5vw;
+}
+
+.avatar-speech {
+	display: grid;
+	grid-template-columns: repeat(2, auto);
+	grid-template-rows: repeat(3, auto);
+	grid-template-areas: '. text' 'img text' 'img .';
+
+	img {
+		grid-area: img;
+		max-height: 300px;
+	}
+
+	blockquote {
+		$size: 100px;
+
+		background: $white;
+		border: none;
+		border-radius: 20px;
+		color: $main;
+		grid-area: text;
+		padding: 30px;
+		margin-bottom: $size;
+		position: relative;
+
+		&:before {
+			content: "";
+			position: absolute;
+			left: $size;
+			bottom: (-1 * $size) + 20px;
+			width: 0;
+			height: 0;
+			border-top: $size solid $white;
+			border-right: $size solid transparent;
+			transform: rotate(10deg);
+		}
+	}
+}
+
+.subject-areas {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-column-gap: 20px;
+	padding-top: 50px;
+
+	figure {
+		background: var(--subjectBackground);
+		border-radius: 5px;
+		display: grid;
+		grid-template-rows: auto 3em;
+		grid-template-areas: 'img' 'name';
+		margin: 0;
+		position: relative;
+
+		&:nth-child(2n) {
+			margin-top: 50px;
+		}
+
+		&:nth-child(2n-1) {
+			margin-bottom: 50px;
+		}
+	}
+
+	img {
+		margin: -20px auto 0;
+		max-height: 320px;
+	}
+
+	figcaption {
+		color: $white;
+		background: rgba(#fff, 0.1);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		grid-area: name;
+		font-weight: bold;
+		text-transform: uppercase;
+		position: relative;
+		z-index: 1;
+	}
+}
+
+.wp-block-buttons {
+	display: flex;
+	justify-content: space-around;
+
+	a {
+		@extend %button;
+		background: $primary;
+		color: $main;
+		display: block;
+		margin: 10px 20px;
+
+		// Background Colours
+		&[class*="purple-background"] {
+			background: $purple;
+		}
+
+		&[class*="yellow-background"] {
+			background: $yellow;
+		}
+
+		&[class*="green-background"] {
+			background: $green;
+		}
+
+		&[class*="blue-background"] {
+			background: $blue;
+		}
+
+		&[class*="orange-background"] {
+			background: $orange;
+		}
+
+		&[class*="maroon-background"] {
+			background: $maroon;
+		}
+
+		// Text Colours
+		&[class*="purple-color"] {
+			color: $purple;
+		}
+
+		&[class*="yellow-color"] {
+			color: $yellow;
+		}
+
+		&[class*="green-color"] {
+			color: $green;
+		}
+
+		&[class*="blue-color"] {
+			color: $blue;
+		}
+
+		&[class*="orange-color"] {
+			color: $orange;
+		}
+
+		&[class*="maroon-color"] {
+			color: $maroon;
+		}
+
+		&[class*="black-color"] {
+			color: $main;
+		}
+
+		&[class*="white-color"] {
+			color: $white;
+		}
+
+		&[class*="grey-color"] {
+			color: $grey;
+		}
+
+		&:active, &:hover, &:focus {
+			background: $primary;
+			color: $main;
+			text-decoration: underline;
+
+			// Background Colours
+			&[class*="purple-background"] {
+				color: $purple;
+			}
+
+			&[class*="yellow-background"] {
+				color: $yellow;
+			}
+
+			&[class*="green-background"] {
+				color: $green;
+			}
+
+			&[class*="blue-background"] {
+				color: $blue;
+			}
+
+			&[class*="orange-background"] {
+				color: $orange;
+			}
+
+			&[class*="maroon-background"] {
+				color: $maroon;
+			}
+
+			// Text Colours
+			&[class*="purple-color"] {
+				background: $purple;
+			}
+
+			&[class*="yellow-color"] {
+				background: $yellow;
+			}
+
+			&[class*="green-color"] {
+				background: $green;
+			}
+
+			&[class*="blue-color"] {
+				background: $blue;
+			}
+
+			&[class*="orange-color"] {
+				background: $orange;
+			}
+
+			&[class*="maroon-color"] {
+				background: $maroon;
+			}
+
+			&[class*="black-color"] {
+				background: $main;
+			}
+
+			&[class*="white-color"] {
+				background: $white;
+			}
+
+			&[class*="grey-color"] {
+				background: $grey;
+			}
+		}
+	}
+}

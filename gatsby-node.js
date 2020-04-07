@@ -1,56 +1,139 @@
-/* eslint-disable template-curly-spacing */
-const _ = require(`lodash`),
-	Promise = require(`bluebird`),
-	path = require(`path`),
-	slash = require(`slash`)
-
-
-exports.createPages = ({ graphql, actions }) => {
-	const { createPage } = actions
-	return new Promise((resolve, reject) => {
-		// ==== PAGES (WORDPRESS NATIVE) ====
-		graphql(
-			`
-				{
-					wpgraphql {
-						pages(first: 100) {
-						  edges {
-							node {
-							  id
-							  slug
-							  status
-							  pageId
-							}
-						  }
+exports.createPages = async function({ actions, graphql }) {
+	await graphql(`
+		{
+			wpgraphql {
+				pages(first: 100) {
+					edges {
+						node {
+							id
+							slug
 						}
 					}
 				}
-			`
-		)
-		.then(result => {
-			if (result.errors) {
-				console.log(result.errors)
-				reject(result.errors)
+				subjects {
+					edges {
+						node {
+							id
+							commonWheelProperties {
+								code
+							}
+							subject {
+								sentences {
+									... on WPGraphQL_Sentence {
+										relatedAlignments {
+											alignments {
+												... on WPGraphQL_Alignment {
+													id
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				sentences(first: 100) {
+					edges {
+						node {
+							id
+							commonWheelProperties {
+								code
+							}
+							relatedAlignments {
+								alignments {
+									... on WPGraphQL_Alignment {
+										id
+									}
+								}
+							}
+						}
+					}
+				}
+				careers(first: 100) {
+					edges {
+						node {
+							slug
+							relatedAlignments {
+								alignments {
+									... on WPGraphQL_Alignment {
+										id
+									}
+								}
+							}
+						}
+					}
+				}
 			}
-
-			// Create Page pages.
-			let pageTemplate = path.resolve(`./src/templates/page.js`)
-			_.each(result.data.wpgraphql.pages.edges, edge => {
-				let slug = edge.node.slug
-
-				createPage({
-					path: `/${slug}/`,
-					component: slash(pageTemplate),
-					context: {
-						id: edge.node.id,
-					},
-				})
-				resolve()
+		}
+	`).then(res => {
+		res.data.wpgraphql.pages.edges.forEach(edge => {
+			actions.createPage({
+				path: `${edge.node.slug}`,
+				component: require.resolve(`./src/templates/page.js`),
+				context: {
+					id: edge.node.id
+				},
 			})
 		})
-		.catch(err => {
-			console.log(err)
+
+		res.data.wpgraphql.sentences.edges.forEach(edge => {
+				let careers = [],
+				alignments = []
+
+				edge.node.relatedAlignments.alignments.forEach(a => {
+					alignments.push(a.id)
+				})
+
+				res.data.wpgraphql.careers.edges.forEach(c => {
+					c.node.relatedAlignments.alignments.forEach(a => {
+						if(alignments.includes(a.id)) {
+							careers.push(c.node.slug)
+						}
+					})
+				})
+
+				actions.createPage({
+					path: `/filter/sentence/${edge.node.commonWheelProperties.code}`,
+					component: require.resolve(`./src/templates/filterSentence.js`),
+					context: {
+						id: edge.node.id,
+						careers,
+						alignments
+					},
+				})
 		})
-		// ==== END PAGES ====
+
+		res.data.wpgraphql.subjects.edges.forEach(edge => {
+			let careers = [],
+				alignments = []
+
+			edge.node.subject.sentences.forEach(s => {
+				s.relatedAlignments.alignments.forEach(a => {
+					alignments.push(a.id)
+				})
+			})
+
+			res.data.wpgraphql.careers.edges.forEach(c => {
+				c.node.relatedAlignments.alignments.forEach(a => {
+					if(alignments.includes(a.id)) {
+						careers.push(c.node.slug)
+					}
+				})
+			})
+
+			actions.createPage({
+				path: `/filter/subject/${edge.node.commonWheelProperties.code}`,
+				component: require.resolve(`./src/templates/filterSubject.js`),
+				context: {
+					id: edge.node.id,
+					careers,
+					alignments
+				},
+			})
+		})
 	})
-}
+	.catch(err => {
+		console.log(err)
+	})
+  }

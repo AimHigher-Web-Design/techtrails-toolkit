@@ -1,0 +1,57 @@
+@import '../variables.scss';
+
+header {
+	$margin: 2em;
+	$bubble: 10vw;
+	$bubble_max: 130px;
+
+	background: $yellow;
+	display: flex;
+	justify-content: space-between;
+	margin-top: $margin;
+	padding: 20px 5vw;
+	position: relative;
+
+	&:before {
+		background: $purple;
+		border-radius: 50%;
+		content: '';
+		height: $bubble;
+		max-height: $bubble_max;
+		width: $bubble;
+		max-width: $bubble_max;
+		position: absolute;
+		top: calc(-1 * ((#{$bubble} / 2) + #{$margin}));
+		right: 30vw;
+		z-index: 5;
+	}
+
+	.site-logo {
+		svg {
+			max-height: 100px;
+
+			.cls-1 {
+				fill: $grey;
+			}
+
+			.cls-2 {
+				fill: $orange;
+			}
+		}
+	}
+
+	nav {
+		ul {
+			display: flex;
+		}
+
+		a {
+			@extend %button;
+			@extend %button-primary;
+
+			display: block;
+			font-size: 1em;
+			text-transform: uppercase;
+		}
+	}
+}

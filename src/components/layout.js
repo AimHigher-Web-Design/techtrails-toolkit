@@ -5,7 +5,8 @@ import { graphql, StaticQuery } from 'gatsby'
 import Header from './header'
 import Footer from './footer'
 
-// import '../scss/style.scss'
+import '../scss/global.scss';
+import '../scss/content.scss';
 
 import Logo from '../img/logo.jpg'
 // import Favicon from '../img/favicon.png'
