@@ -8,10 +8,10 @@ import '../scss/components/filter.scss'
 export default class IndexPage extends React.Component {
 	render() {
 		const pageContent = this.props.data.home.page.content
-		
+
 		return (
 			<Layout classes="home">
-				<div dangerouslySetInnerHTML={{__html: pageContent}} />
+				<div dangerouslySetInnerHTML={{__html: pageContent }} />
 				<FilterForm/>
 			</Layout>
 		)

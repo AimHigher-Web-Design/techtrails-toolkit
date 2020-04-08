@@ -1,0 +1,184 @@
+@import '../variables.scss';
+
+.jobs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-gap: 20px;
+
+
+	.tile {
+		padding-top: 20px;
+		overflow: hidden;
+
+		a {
+			border: 1px solid $grey_light;
+			display: block;
+			height: 150px;
+			position: relative;
+
+			&:before, &:after {
+				background: $grey_light;
+				content: '';
+				position: absolute;
+				height: 100px;
+				bottom: -40px;
+				right: -50px;
+				width: 200px;
+				transform: rotate(-10deg);
+				z-index: 10;
+			}
+
+			&:after {
+				background: $grey;
+				bottom: -30px;
+				z-index: 0;
+			}
+
+			&:active, &:hover, &:focus {
+				background: none;
+
+				&:after {
+					background: $maroon;
+				}
+
+				&:before {
+					background: $yellow;
+				}
+			}
+		}
+
+		.title {
+			display: flex;
+			align-items: start;
+			justify-content: center;
+			color: $main;
+			min-height: 2.5em;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;	
+			text-align: center;
+			text-transform: uppercase;
+			font-size: 0.7em;
+			z-index: 15;
+		}
+
+		img {
+			margin-top: -20px;
+			position: relative;
+			z-index: 5;
+		}
+	}
+
+	.overlay {
+		display: none;
+
+		&:target {
+			display: block;
+		}
+	}
+
+	.modal {
+		border: none;
+		border-radius: unset;
+		grid-template-rows: 220px 1fr;
+		grid-template-areas: 'header' 'content';
+		grid-gap: 0;
+		padding: 0;
+
+		.close {
+			background: $white;
+			border-color: $white;
+			color: $grey;
+			z-index: 100;
+
+			&:active, &:hover, &:focus {
+				background: $blue;
+				border-color: $blue;
+				color: $white;
+			}
+		}
+	}
+
+	header {
+		background: $blue;
+		display: grid;
+		grid-template-rows: 1fr auto;
+		grid-template-areas: 'title img' 'subject img';
+		margin: 0;
+		padding: 10px 20px;
+
+		&:before {
+			content: normal;
+		}
+
+		img {
+			grid-area: img;
+			position: relative;
+			top: -80px;
+			width: 280px;
+			z-index: 0;
+		}
+	}
+
+	.content {
+		background: $white;
+		color: $grey;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-areas: 'desc resHead' 'desc res' 'desc skillHead' 'desc skills' 'desc video';
+		grid-column-gap: 20px;
+		grid-row-gap: 1em;
+		position: relative;
+		padding: 20px;
+		overflow: auto;
+		z-index: 10;
+
+		h3 {
+			color: $blue;
+			font-size: 1.25em;
+			font-weight: 300;
+			line-height: 1.2;
+			margin: 0;
+		}
+
+		.desc {
+			grid-area: desc;
+
+			> *:first-child {
+				margin-top: 0;
+			}
+		}
+
+		.resources {
+			padding: 0;
+			li {
+				background: $grey_light;
+				display: flex;
+				align-items: center;
+				margin-bottom: 5px;
+				padding: 0.5em;
+				list-style: none;
+
+				svg {
+					color: $main;
+					margin-right: 20px;
+				}
+			}
+
+			a {
+				text-decoration: none;
+
+				&:active, &:hover, &:focus {
+					background: none;
+					color: $purple;
+					text-decoration: underline;
+				}
+			}
+		}
+
+		ul {
+			margin: 0;
+		}
+	}
+}

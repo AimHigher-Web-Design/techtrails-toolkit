@@ -1,5 +1,13 @@
 @import '../variables.scss';
 
+#modal {
+	display: none;
+
+	&:target {
+		display: block;
+	}
+}
+
 .modal {
 	background: $white;
 	border: 5px solid $purple;
@@ -11,9 +19,11 @@
 	padding: 30px;
 	position: fixed;
 	top: 10vh;
-	right: 10vw;
 	left: 10vw;
-	max-height: 90vh;
+	max-height: 85vh;
+	width: 80vw;
+	max-width: 800px;
+	z-index: 100;
 
 	button, .btn {
 		@extend %button;
@@ -40,6 +50,30 @@
 	.next, .end {
 		grid-area: button-n;
 		justify-self: end;
+	}
+
+	.close {
+		background: $purple;
+		border-color: $purple;
+		display: flex;
+		align-items: center;
+		justify-content: center;;
+		padding: 0;
+		position: absolute;
+		height: 40px;
+		width: 40px;
+		right: -20px;
+		top: -20px;
+
+		span {
+			position: absolute;
+			right: -200vw;
+		}
+
+		&:active, &:hover, &:focus {
+			border-color: $white;
+			color: $purple;
+		}
 	}
 
 	.steps {
@@ -210,5 +244,21 @@
 				}
 			}
 		}
+	}
+}
+
+.overlay {
+	background: rgba($grey, 0.7);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 90;
+}
+
+@media(min-width: 1000px) {
+	.modal {
+		left: calc(50vw - 400px);
 	}
 }

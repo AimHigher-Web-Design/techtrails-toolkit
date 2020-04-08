@@ -1,6 +1,8 @@
 import React, {Fragment, useState} from 'react'
 import { Link, graphql, StaticQuery } from 'gatsby'
 
+import {XCircle} from 'react-feather'
+
 import '../scss/components/header.scss'
 
 const FilterForm = () => (
@@ -96,84 +98,87 @@ const FilterForm = () => (
 			}
 
 			return (
-				<div className="modal">
-					<div className="steps">
-						<section className="current">
-							<fieldset>
-								<div>
-									<legend>What's your favourite subject area?</legend>
-									<img src="http://techtrails.local/wp-content/uploads/2018/02/Technical-writer.png" />
-									<ul className="opts subjects">
-										{subjects.map(s => (
-											<li key={s.node.commonWheelProperties.code}>
-												<input 
-													type="radio"
-													name="subject"
-													value={s.node.commonWheelProperties.code}
-													id={s.node.commonWheelProperties.code}
-													onChange={() => {selectSubject(s.node.commonWheelProperties.code)}}
-												/>
-												<label 
-													htmlFor={s.node.commonWheelProperties.code} 
-													dangerouslySetInnerHTML={{__html: s.node.title}}
-													style={{
-														'--subject': s.node.subject.colour
-													}}
-												/>
-											</li>
-										))}
-									</ul>
-								</div>
-							</fieldset>
-						</section>
-						<section>
-							{subjects.map(s => (
-								<fieldset className="sentences" data-subject={s.node.commonWheelProperties.code}>
+				<div className="overlay" id="modal">
+					<div className="modal">
+						<a className="close btn" href="#">{<XCircle/>}<span>Close</span></a>
+						<div className="steps">
+							<section className="current">
+								<fieldset>
 									<div>
-										<legend>Which sentence describes you best?</legend>
+										<legend>What's your favourite subject area?</legend>
 										<img src="http://techtrails.local/wp-content/uploads/2018/02/Technical-writer.png" />
-										<ul className="opts">
-											{s.node.subject.sentences.map(sent => (
-												<li key={sent.commonWheelProperties.code}>
+										<ul className="opts subjects">
+											{subjects.map(s => (
+												<li key={s.node.commonWheelProperties.code}>
 													<input 
 														type="radio"
-														name="sentence"
-														value={sent.commonWheelProperties.code}
-														id={sent.commonWheelProperties.code}
-														onChange={() => {selectSentence(sent.commonWheelProperties.code)}}
+														name="subject"
+														value={s.node.commonWheelProperties.code}
+														id={s.node.commonWheelProperties.code}
+														onChange={() => {selectSubject(s.node.commonWheelProperties.code)}}
 													/>
 													<label 
-														htmlFor={sent.commonWheelProperties.code} 
-														dangerouslySetInnerHTML={{__html: sent.title}}
+														htmlFor={s.node.commonWheelProperties.code} 
+														dangerouslySetInnerHTML={{__html: s.node.title}}
+														style={{
+															'--subject': s.node.subject.colour
+														}}
 													/>
 												</li>
 											))}
 										</ul>
 									</div>
 								</fieldset>
-							))}
-						</section>
+							</section>
+							<section>
+								{subjects.map(s => (
+									<fieldset key={s.node.commonWheelProperties.code} className="sentences" data-subject={s.node.commonWheelProperties.code}>
+										<div>
+											<legend>Which sentence describes you best?</legend>
+											<img src="http://techtrails.local/wp-content/uploads/2018/02/Technical-writer.png" />
+											<ul className="opts">
+												{s.node.subject.sentences.map(sent => (
+													<li key={sent.commonWheelProperties.code}>
+														<input 
+															type="radio"
+															name="sentence"
+															value={sent.commonWheelProperties.code}
+															id={sent.commonWheelProperties.code}
+															onChange={() => {selectSentence(sent.commonWheelProperties.code)}}
+														/>
+														<label 
+															htmlFor={sent.commonWheelProperties.code} 
+															dangerouslySetInnerHTML={{__html: sent.title}}
+														/>
+													</li>
+												))}
+											</ul>
+										</div>
+									</fieldset>
+								))}
+							</section>
+						</div>
+						<button 
+							type="button" 
+							className="back" 
+							onClick={prevSect}
+						>
+							Back
+						</button>
+						<button 
+							type="button" 
+							className="next" 
+							onClick={nextSect}
+						>
+							Next
+						</button>
+						<a 
+							className="end btn hide" 
+							href="#"
+						>
+							Next
+						</a>
 					</div>
-					<button 
-						type="button" 
-						className="back" 
-						onClick={prevSect}
-					>
-						Back
-					</button>
-					<button 
-						type="button" 
-						className="next" 
-						onClick={nextSect}
-					>
-						Next
-					</button>
-					<a 
-						className="end btn hide" 
-						href="#"
-					>
-						Next
-					</a>
 				</div>
 			)
 		}}

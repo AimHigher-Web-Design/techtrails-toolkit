@@ -58,14 +58,8 @@ main {
 	grid-column-gap: 20px;
 	padding-top: 50px;
 
-	figure {
-		background: var(--subjectBackground);
-		border-radius: 5px;
-		display: grid;
-		grid-template-rows: auto 3em;
-		grid-template-areas: 'img' 'name';
-		margin: 0;
-		position: relative;
+	a {
+		text-decoration: none;
 
 		&:nth-child(2n) {
 			margin-top: 50px;
@@ -74,6 +68,25 @@ main {
 		&:nth-child(2n-1) {
 			margin-bottom: 50px;
 		}
+	
+		&:active, &:hover, &:focus {
+			background: none;
+
+			figure {
+				border: 5px solid white;
+				grid-template-rows: auto calc(3em - 10px);
+			}
+		}
+	}
+
+	figure {
+		background: var(--subjectBackground);
+		border-radius: 5px;
+		display: grid;
+		grid-template-rows: auto 3em;
+		grid-template-areas: 'img' 'name';
+		margin: 0;
+		position: relative;
 	}
 
 	img {
@@ -90,6 +103,7 @@ main {
 		grid-area: name;
 		font-weight: bold;
 		text-transform: uppercase;
+		text-align: center;
 		position: relative;
 		z-index: 1;
 	}
