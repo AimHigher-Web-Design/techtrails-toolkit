@@ -25,12 +25,16 @@ const JobTile = ({commonWheelProperties, careerFields, content, title, subject})
 					</header>
 					<div class="content">
 						<div className="desc" dangerouslySetInnerHTML={{__html: content}} />
-						<h3>Resources</h3>
-						<ul className="resources">
-							{links.map(l => (
-								<li>{<ExternalLink/>}<a href={l.url} target="_blank">{l.label}</a></li>
-							))}
-						</ul>
+						{links && 
+							<Fragment>
+								<h3>Resources</h3>
+								<ul className="resources">
+									{links.map(l => (
+										<li key={l.url}>{<ExternalLink/>}<a href={l.url} target="_blank">{l.label}</a></li>
+									))}
+								</ul>
+							</Fragment>
+						}
 						<h3>Skills</h3>
 						<div dangerouslySetInnerHTML={{__html: skills}}/>
 						{videoThumbnail && <a href={videoUrl}>

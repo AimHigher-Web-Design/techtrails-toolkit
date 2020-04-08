@@ -127,6 +127,7 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-template-areas: 'desc resHead' 'desc res' 'desc skillHead' 'desc skills' 'desc video';
+		grid-auto-rows: max-content;
 		grid-column-gap: 20px;
 		grid-row-gap: 1em;
 		position: relative;

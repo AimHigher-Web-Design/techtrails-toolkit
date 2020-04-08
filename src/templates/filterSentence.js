@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
+import FilterLayout from '../components/filterPage'
+
 
 class PageTemplate extends Component {
 	render() {
-		const careers = this.props.data.wpgraphql.careers.edges
-
-		console.log(this.props.data)
+		const careers = this.props.data.wpgraphql.careers.edges,
+		data = {
+			jobs: careers
+		}
 		
 		return (
 			<Layout>
-				<h1>Filtered Page</h1>
-				<ul>
-					{careers.map(c => (
-						<li>{c.node.title}</li>
-					))}
-				</ul>
+				<FilterLayout {...data}>
+				</FilterLayout>
 			</Layout>
 		)
 	}
@@ -33,8 +32,25 @@ export const pageQuery = graphql`
 			careers(where: {nameIn: $careers}) {
 				edges {
 					node {
-						slug
 						title
+						commonWheelProperties {
+							code
+						}
+						careerFields {
+							featuredImage {
+								sourceUrl(size: MEDIUM_LARGE)
+							}
+							links {
+								label
+								url
+							}
+							skills
+							videoThumbnail {
+								sourceUrl(size: MEDIUM)
+							}
+							videoUrl
+						}
+						content(format: RENDERED)
 					}
 				}
 			}

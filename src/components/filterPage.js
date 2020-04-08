@@ -2,6 +2,12 @@ import React, {Fragment} from 'react'
 import JobTile from './jobTiles'
 
 const FilterLayout = ({title, jobs, children}) => {
+	const subject = title
+
+	if(!subject) {
+		title = 'Search Results'
+	}
+
 	return (
 		<Fragment>
 			<h1 dangerouslySetInnerHTML={{__html: title}} />	
@@ -10,11 +16,11 @@ const FilterLayout = ({title, jobs, children}) => {
 				{jobs.map(job => {
 					const details = {
 						...job.node,
-						subject: title,
+						subject: subject
 					}
 
 					return (
-						<JobTile {...details} />
+						<JobTile key={job.node.commonWheelProperties.code} {...details} />
 					)
 				})}
 			</section>
