@@ -186,6 +186,7 @@ main {
 		position: relative;
 		text-align: center;
 		z-index: 5;
+		width: 100%;
 
 		p {
 			&:first-child {
@@ -375,28 +376,30 @@ main {
 	}
 }
 
-.desc {
-	clear: both;
-	font-size: 0.8em;
-	grid-column: 1 / -1;
-	margin: 0 auto;
-	text-align: center;
-	width: 80%;
-}
-
-.back.btn {
-	background: $grey_light;
-	border: 2px solid $orange;
-	color: $grey;
-	font-size: 0.8em;
-	float: right;
-	margin: 10px 0;
-	margin-left: auto;
-	text-align: right;
-
-	&:active, &:hover, &:focus {
-		background: $orange;
-		color: $white;
+.info {
+	.desc {
+		clear: both;
+		font-size: 0.8em;
+		grid-column: 1 / -1;
+		margin: 0 auto;
+		text-align: center;
+		width: 80%;
+	}
+	
+	.back.btn {
+		background: $grey_light;
+		border: 2px solid $orange;
+		color: $grey;
+		font-size: 0.8em;
+		float: right;
+		margin: 10px 0;
+		margin-left: auto;
+		text-align: right;
+	
+		&:active, &:hover, &:focus {
+			background: $orange;
+			color: $white;
+		}
 	}
 }
 

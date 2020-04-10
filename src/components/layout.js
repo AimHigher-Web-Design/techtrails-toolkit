@@ -35,8 +35,6 @@ const Layout = ({ children, meta, itemtype, itemscope, classes }) => (
 			let defaultMeta = data.wpgraphql.generalSettings
 			meta = meta == undefined ? {} : meta
 
-			console.log(data)
-
 			let metaInfo = {
 				name: meta.name ? `${meta.name} | ${defaultMeta.title}` : defaultMeta.title,
 				description: meta.description || defaultMeta.description,

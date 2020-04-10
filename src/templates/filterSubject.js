@@ -69,8 +69,10 @@ class PageTemplate extends Component {
 		return (
 			<Layout>
 				<FilterLayout {...data}>
-					<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
-					<a className="btn back" href="/#choose-subject">Back</a>
+					<div className="info">
+						<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
+						<a className="btn back" href="/#choose-subject">Back</a>
+					</div>
 					<div className="filters" style={{'--subject': subject.subject.colour}}>
 
 						<ul>
