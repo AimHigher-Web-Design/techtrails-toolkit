@@ -1,10 +1,24 @@
 @import '../variables.scss';
 
 .jobs {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-	grid-gap: 20px;
+	&.filter {
+		.tile {
+			display: none;
 
+			&.visible {
+				display: block;
+			}
+		}
+	}
+
+	> .container {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		grid-gap: 20px;
+		margin: 0 auto;
+		padding: 20px;
+		max-width: 1200px;
+	}
 
 	.tile {
 		padding-top: 20px;
@@ -23,7 +37,7 @@
 				height: 100px;
 				bottom: -40px;
 				right: -50px;
-				width: 200px;
+				width: 300px;
 				transform: rotate(-10deg);
 				z-index: 10;
 			}
@@ -49,10 +63,11 @@
 
 		.title {
 			display: flex;
-			align-items: start;
+			align-items: flex-start;
 			justify-content: center;
 			color: $main;
 			min-height: 2.5em;
+			padding-bottom: 2px;
 			position: absolute;
 			bottom: 0;
 			left: 0;
@@ -85,6 +100,7 @@
 		grid-template-areas: 'header' 'content';
 		grid-gap: 0;
 		padding: 0;
+		max-width: 900px;
 
 		.close {
 			background: $white;
@@ -101,7 +117,8 @@
 	}
 
 	header {
-		background: $blue;
+		background: $blue url('/img/background.png');
+		background-size: cover;
 		display: grid;
 		grid-template-rows: 1fr auto;
 		grid-template-areas: 'title img' 'subject img';
@@ -112,12 +129,24 @@
 			content: normal;
 		}
 
+		h2 {
+			color: $white;
+			font-size: 1.5em;
+			font-weight: 300;
+			margin: 0;
+		}
+
 		img {
 			grid-area: img;
 			position: relative;
 			top: -80px;
 			width: 280px;
 			z-index: 0;
+		}
+
+		.subject {
+			color: $white;
+			margin: 0;
 		}
 	}
 
@@ -130,6 +159,7 @@
 		grid-auto-rows: max-content;
 		grid-column-gap: 20px;
 		grid-row-gap: 1em;
+		font-size: 16px;
 		position: relative;
 		padding: 20px;
 		overflow: auto;
@@ -181,5 +211,28 @@
 		ul {
 			margin: 0;
 		}
+
+		.video {
+			border: 1px solid $grey_light;
+			justify-self: center;
+			position: relative;
+
+			&:before {
+				background: rgba(#fff, 0.6) url('/img/play.svg');
+				background-size: 40px 40px;
+				background-repeat: no-repeat;
+				background-position: center;
+				content: '';
+				@extend %cover;
+				opacity: 0.85;
+			}
+
+			&:active, &:hover, &:focus {
+				&:before {
+					opacity: 1;
+				}
+			}
+		}
 	}
 }
+

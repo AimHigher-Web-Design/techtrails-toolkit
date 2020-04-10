@@ -4,18 +4,25 @@ import {X, ExternalLink} from 'react-feather'
 
 import '../scss/components/jobTile.scss';
 
-const JobTile = ({commonWheelProperties, careerFields, content, title, subject}) => {
-	const slug = commonWheelProperties.code,
+const JobTile = ({commonWheelProperties, slug, careerFields, content, title, subject, relatedAlignments}) => {
+	const code = commonWheelProperties.code || slug,
 	{ featuredImage, links, skills, videoThumbnail, videoUrl } = careerFields
+
+	let tags = []
+
+	relatedAlignments.alignments.forEach(a => {
+		tags.push(a.commonWheelProperties.code)
+	})
+
 	return (
 		<Fragment>
-			<div className="tile">
-				<a href={`#${slug}`}>
+			<div className="tile" data-tags={tags}>
+				<a href={`#${code}`}>
 					<img src={featuredImage.sourceUrl} />
 					<div className="title">{title}</div>
 				</a>
 			</div>
-			<div className="overlay"  id={slug}>
+			<div className="overlay"  id={code}>
 				<section className="modal">
 					<a className="close btn" href="#">{<X/>}<span>Close</span></a>
 					<header>
@@ -23,7 +30,7 @@ const JobTile = ({commonWheelProperties, careerFields, content, title, subject})
 						<p className="subject" dangerouslySetInnerHTML={{__html: subject}} />
 						<img src={featuredImage.sourceUrl} />
 					</header>
-					<div class="content">
+					<div className="content">
 						<div className="desc" dangerouslySetInnerHTML={{__html: content}} />
 						{links && 
 							<Fragment>
@@ -37,7 +44,7 @@ const JobTile = ({commonWheelProperties, careerFields, content, title, subject})
 						}
 						<h3>Skills</h3>
 						<div dangerouslySetInnerHTML={{__html: skills}}/>
-						{videoThumbnail && <a href={videoUrl}>
+						{videoThumbnail && <a href={videoUrl} className="video" target="_blank">
 							<img src={videoThumbnail.sourceUrl} />
 						</a>}
 					</div>

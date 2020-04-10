@@ -34,7 +34,9 @@ footer {
 		}
 
 		a {
+			display: inline-block;
 			padding: 5px 10px;
+			
 			span {
 				position: absolute;
 				right: -200vw;

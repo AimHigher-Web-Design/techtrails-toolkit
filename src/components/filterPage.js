@@ -4,7 +4,7 @@ import JobTile from './jobTiles'
 const FilterLayout = ({title, subject, jobs, children}) => {
 	
 	if(!title) {
-		title = subject || 'Search Results'
+		title = `${subject} Careers` || 'Search Results'
 	}
 
 	return (
@@ -12,16 +12,18 @@ const FilterLayout = ({title, subject, jobs, children}) => {
 			<h1 dangerouslySetInnerHTML={{__html: title}} />	
 			{children}
 			<section className="jobs">
-				{jobs.map(job => {
-					const details = {
-						...job.node,
-						subject: subject
-					}
+				<div className="container">
+					{jobs.map(job => {
+						const details = {
+							...job.node,
+							subject: subject
+						}
 
-					return (
-						<JobTile key={job.node.commonWheelProperties.code} {...details} />
-					)
-				})}
+						return (
+							<JobTile key={job.node.commonWheelProperties.code} {...details} />
+						)
+					})}
+				</div>
 			</section>
 		</Fragment>
 	)

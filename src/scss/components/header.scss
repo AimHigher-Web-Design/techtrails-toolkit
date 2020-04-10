@@ -7,16 +7,16 @@ header {
 
 	background: $yellow;
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	margin: 0 auto;
-	margin-top: $margin;
+	
 	padding: 20px 5vw;
 	position: relative;
 
 	&:before {
 		background: $purple;
 		border-radius: 50%;
-		content: '';
 		height: $bubble;
 		max-height: $bubble_max;
 		width: $bubble;
@@ -28,8 +28,12 @@ header {
 	}
 
 	.site-logo {
+		width: 50vw;
+		margin-bottom: 20px;
+		max-width: 300px;
+
 		svg {
-			max-height: 100px;
+			max-width: 100%;
 
 			.cls-1 {
 				fill: $grey;
@@ -42,8 +46,11 @@ header {
 	}
 
 	nav {
+		width: 100%;
+
 		ul {
 			display: flex;
+			justify-content: center;
 		}
 
 		a {
@@ -53,6 +60,28 @@ header {
 			display: block;
 			font-size: 1em;
 			text-transform: uppercase;
+		}
+	}
+}
+
+@media(min-width: 480px) {
+	header {
+		$margin: 2em;
+
+		align-items: center;
+		flex-wrap: nowrap;
+		margin-top: $margin;
+
+		&:before {
+			content: '';
+		}
+
+		.site-logo {
+			margin-bottom: 0;
+		}
+
+		nav {
+			width: auto;
 		}
 	}
 }

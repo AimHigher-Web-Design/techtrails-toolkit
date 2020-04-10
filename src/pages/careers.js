@@ -11,11 +11,10 @@ class PageTemplate extends Component {
 			jobs: careers,
 			title: 'All Careers'
 		}
-		
+	
 		return (
 			<Layout>
 				<FilterLayout {...data}>
-					<h2>Job filters appear here</h2>
 				</FilterLayout>
 			</Layout>
 		)
@@ -27,10 +26,11 @@ export default PageTemplate
 export const pageQuery = graphql`
 	query {
 		wpgraphql {
-			careers {
+			careers(last: 200) {
 				edges {
 					node {
 						title
+						slug
 						commonWheelProperties {
 							code
 						}
@@ -44,11 +44,20 @@ export const pageQuery = graphql`
 							}
 							skills
 							videoThumbnail {
-								sourceUrl(size: MEDIUM)
+								sourceUrl(size: MEDIUM_LARGE)
 							}
 							videoUrl
 						}
 						content(format: RENDERED)
+						relatedAlignments {
+							alignments {
+								... on WPGraphQL_Alignment {
+									commonWheelProperties {
+										code
+									}
+								}
+							}
+						}
 					}
 				}
 			}

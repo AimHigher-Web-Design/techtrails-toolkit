@@ -1,9 +1,9 @@
 import React from 'react'
 import {graphql} from 'gatsby'
 import Layout from '../components/layout'
-import FilterForm from '../components/filter'
+import Modal from '../components/modal'
 
-import '../scss/components/filter.scss'
+import '../scss/components/modal.scss'
 
 export default class IndexPage extends React.Component {
 	render() {
@@ -12,6 +12,7 @@ export default class IndexPage extends React.Component {
 		return (
 			<Layout classes="home">
 				<div dangerouslySetInnerHTML={{__html: pageContent }} />
+				{/* <Modal/> */}
 			</Layout>
 		)
 	}

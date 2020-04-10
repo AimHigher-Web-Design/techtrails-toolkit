@@ -16,6 +16,7 @@ $secondary: $blue;
 $main: #000000;
 $white: #ffffff;
 $grey: #666666;
+$grey_mid: #dee2e6;
 $grey_light: #e9ecef;
 $black: $main;
 
@@ -74,4 +75,12 @@ $black: $main;
 	right: 0;
 	bottom: 0;
 	left: 0;
+}
+
+%reset-list {
+	ul, li {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
 }

@@ -34,24 +34,7 @@ exports.createPages = async function({ actions, graphql }) {
 						}
 					}
 				}
-				sentences(first: 100) {
-					edges {
-						node {
-							id
-							commonWheelProperties {
-								code
-							}
-							relatedAlignments {
-								alignments {
-									... on WPGraphQL_Alignment {
-										id
-									}
-								}
-							}
-						}
-					}
-				}
-				careers(first: 100) {
+				careers(first: 200) {
 					edges {
 						node {
 							slug
@@ -84,38 +67,11 @@ exports.createPages = async function({ actions, graphql }) {
 			})
 		})
 
-		res.data.wpgraphql.sentences.edges.forEach(edge => {
-				let careers = [],
-				alignments = []
-
-				edge.node.relatedAlignments.alignments.forEach(a => {
-					alignments.push(a.id)
-				})
-
-				res.data.wpgraphql.careers.edges.forEach(c => {
-					c.node.relatedAlignments.alignments.forEach(a => {
-						if(alignments.includes(a.id)) {
-							careers.push(c.node.slug)
-						}
-					})
-				})
-
-				actions.createPage({
-					path: `/filter/sentence/${edge.node.commonWheelProperties.code}`,
-					component: require.resolve(`./src/templates/filterSentence.js`),
-					context: {
-						id: edge.node.id,
-						careers,
-						alignments
-					},
-				})
-		})
-
 		res.data.wpgraphql.subjects.edges.forEach(edge => {
 			let careers = [],
 				alignments = []
 
-			edge.node.subject.sentences.forEach(s => {
+			edge.node.subject.sentences.forEach(s => {				
 				s.relatedAlignments.alignments.forEach(a => {
 					alignments.push(a.id)
 				})
@@ -130,7 +86,7 @@ exports.createPages = async function({ actions, graphql }) {
 			})
 
 			actions.createPage({
-				path: `/filter/subject/${edge.node.commonWheelProperties.code}`,
+				path: `/subject/${edge.node.commonWheelProperties.code}`,
 				component: require.resolve(`./src/templates/filterSubject.js`),
 				context: {
 					id: edge.node.id,
