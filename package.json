@@ -33,7 +33,7 @@
 		"gatsby-plugin-sass": "^2.2.1",
 		"gatsby-plugin-sharp": "^2.5.4",
 		"gatsby-source-filesystem": "^2.2.2",
-		"gatsby-source-graphql": "2.3.0",
+		"gatsby-source-graphql": "^2.3.2",
 		"gatsby-transformer-sharp": "^2.4.4",
 		"node-sass": "^4.11.0",
 		"react": "^16.13.1",
