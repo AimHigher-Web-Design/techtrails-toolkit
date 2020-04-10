@@ -834,7 +834,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.4.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.7.6", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.2.tgz#d90df0583a3a252f09aaa619665367bae518db06"
   integrity sha512-NE2DtOdufG7R5vnfQUTehdTfNycfUANEtCa9PssN9O/xmTzP4E08UI797ixaei6hBEVL9BI/PsdJS5x7mWoB9Q==
@@ -3791,11 +3791,6 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-dataloader@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-2.0.0.tgz#41eaf123db115987e21ca93c005cd7753c55fe6f"
-  integrity sha512-YzhyDAwA4TaQIhM5go+vCLmU0UikghC/t9DTQYZR2M/UvZ1MdOhPezSDZcjj9uqQJOMqjLcpWtyW2iNINdlatQ==
-
 date-fns@^2.11.0:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.12.0.tgz#01754c8a2f3368fc1119cf4625c3dad8c1845ee6"
@@ -5720,20 +5715,18 @@ gatsby-source-filesystem@^2.2.2:
     valid-url "^1.0.9"
     xstate "^4.8.0"
 
-gatsby-source-graphql@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/gatsby-source-graphql/-/gatsby-source-graphql-2.3.0.tgz#655610101f4b4a688c26b64d3aaa607f0bd2cdd8"
-  integrity sha512-Z/Bl/9zeJglqo4Fzmhg7p+xZksMp0BRbelzWR/J5lRMfmvZnwcgqfIKiozXK0DkHB5egBU16yWLNR/9GJN8Lqw==
+gatsby-source-graphql@2.1.34:
+  version "2.1.34"
+  resolved "https://registry.yarnpkg.com/gatsby-source-graphql/-/gatsby-source-graphql-2.1.34.tgz#58e51ed03163b1125c34bb263fc4f9bc53a58521"
+  integrity sha512-nPtMGJEFlF2FG/II7ltpklU1iJ/iffaDneZyPy6pJ9UO2ujC067daHzHavbUUZxf3xt630Cd7ULcQzJxuutoeA==
   dependencies:
-    "@babel/runtime" "^7.8.7"
+    "@babel/runtime" "^7.7.6"
     apollo-link "1.2.13"
     apollo-link-http "^1.5.16"
-    dataloader "^2.0.0"
-    graphql "^14.6.0"
-    graphql-tools-fork "^8.9.6"
+    graphql-tools-fork "^8.0.1"
     invariant "^2.2.4"
     node-fetch "^1.7.3"
-    uuid "^3.4.0"
+    uuid "^3.3.3"
 
 gatsby-telemetry@^1.2.3:
   version "1.2.3"
@@ -6289,7 +6282,7 @@ graphql-request@^1.5.0:
   dependencies:
     cross-fetch "2.2.2"
 
-graphql-tools-fork@^8.9.6:
+graphql-tools-fork@^8.0.1:
   version "8.10.0"
   resolved "https://registry.yarnpkg.com/graphql-tools-fork/-/graphql-tools-fork-8.10.0.tgz#5c745836b599c3a360bfc16d06dcd9c56752f0e8"
   integrity sha512-RzUIpnBMxInqgAtTmfET34Z6cwpREwTaXedRDT+0e6vzMdL2GckDqkCQyxsXHghbCVOL80oOXGB02S0rzgkOwA==
@@ -12473,7 +12466,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@3.4.0, uuid@^3.0.0, uuid@^3.0.1, uuid@^3.3.2, uuid@^3.4.0:
+uuid@3.4.0, uuid@^3.0.0, uuid@^3.0.1, uuid@^3.3.2, uuid@^3.3.3, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==

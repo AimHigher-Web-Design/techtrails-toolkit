@@ -37,6 +37,7 @@ module.exports = {
 			  fieldName: `wpgraphql`,
 			  url: `${process.env.WP_URL}/graphql`,
 			  refetchInterval: 300,
+
 			},
 		},
 		`gatsby-plugin-react-helmet`,

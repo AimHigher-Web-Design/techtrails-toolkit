@@ -12,7 +12,6 @@ class PageTemplate extends Component {
 			careers = wpgraphql.careers.edges,
 			subject = wpgraphql.subject,
 			popup = wpgraphql.popup,
-			images = wpgraphql.images.edges,
 			data = {
 				jobs: careers,
 				subject: subject.title
@@ -58,21 +57,18 @@ class PageTemplate extends Component {
 				document.querySelector('.filters .popup').classList.add('hidden')
 			}
 
-			let avatars = []
+			const avatars = [
+				'https://wptoolkit.techtrails.org.au/wp-content/uploads/2020/04/Avatar-Emmaline_crop-265x300.png',
+				'https://wptoolkit.techtrails.org.au/wp-content/uploads/2020/04/Avatar-Lucy_crop-236x300.png',
+				'https://wptoolkit.techtrails.org.au/wp-content/uploads/2020/04/Avatar-Leisa_crop-168x300.png',
+				'https://wptoolkit.techtrails.org.au/wp-content/uploads/2020/04/Avatar-Kay_crop-175x300.png'
+			]
 
-			images.forEach(i => {
-				if(i.node.parent && i.node.parent.slug == 'avatar-popup') {
-					avatars.push(i.node.sourceUrl)
-				}
-			})
-		
 		return (
 			<Layout>
 				<FilterLayout {...data}>
-					<div className="info">
-						<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
-						<a className="btn back" href="/#choose-subject">Back</a>
-					</div>
+					<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
+					<a className="btn back" href="/#choose-subject">Back</a>
 					<div className="filters" style={{'--subject': subject.subject.colour}}>
 
 						<ul>
@@ -166,18 +162,6 @@ export const pageQuery = graphql`
 				content(format: RENDERED)
 				featuredImage {
 					sourceUrl(size: MEDIUM)
-				}
-			}
-			images: mediaItems(first: 300) {
-				edges {
-					node {
-						sourceUrl(size: MEDIUM)
-						parent {
-							... on WPGraphQL_Page {
-								slug
-							}
-						}
-					}
 				}
 			}
 		}
