@@ -67,6 +67,7 @@ main {
 	display: grid;
 	grid-template-areas: 'text' 'img';
 	grid-gap: 20px;
+	margin-top: 30px;
 
 	img {
 		display: none;
@@ -424,7 +425,7 @@ main {
 @media(min-width: 800px) {
 	.colour-container {
 		> .container {
-			padding: 80px 5vw;
+			padding: 50px 5vw;
 		}
 	}
 
@@ -465,7 +466,7 @@ main {
 @media(min-width: 800px) {
 	.colour-container {
 		> .container {
-			padding: 100px 5vw;
+			// padding: 100px 5vw;
 		}
 	}
 }

@@ -24,8 +24,9 @@
 		padding-top: 20px;
 		overflow: hidden;
 
-		a {
+		button {
 			border: 1px solid $grey_light;
+			cursor: pointer;
 			display: block;
 			height: 150px;
 			position: relative;
@@ -120,8 +121,9 @@
 		background: $blue url('/img/background.png');
 		background-size: cover;
 		display: grid;
-		grid-template-rows: 1fr auto;
+		grid-template-rows: 1fr 2em;
 		grid-template-areas: 'title img' 'subject img';
+		align-items: start;
 		margin: 0;
 		padding: 10px 20px;
 

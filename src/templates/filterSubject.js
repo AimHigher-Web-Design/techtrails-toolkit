@@ -14,7 +14,8 @@ class PageTemplate extends Component {
 			popup = wpgraphql.popup,
 			data = {
 				jobs: careers,
-				subject: subject.title
+				subject: subject.title,
+				subjectCode: subject.commonWheelProperties.code
 			},
 			toggleFilter = (tags, e) => {
 				// Remove active filter details
@@ -55,7 +56,14 @@ class PageTemplate extends Component {
 			},
 			closeHelp = () => {
 				document.querySelector('.filters .popup').classList.add('hidden')
+				if (typeof window !== `undefined`) {
+					window.localStorage.setItem('returningUser', true)
+				}
 			}
+
+			let returningUser = typeof window !== `undefined` ? window.localStorage.getItem('returningUser') : false
+
+			
 
 			const avatars = [
 				'https://wptoolkit.techtrails.org.au/wp-content/uploads/2020/04/Avatar-Emmaline_crop-265x300.png',
@@ -67,8 +75,10 @@ class PageTemplate extends Component {
 		return (
 			<Layout>
 				<FilterLayout {...data}>
-					<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
-					<a className="btn back" href="/#choose-subject">Back</a>
+					<div className="info">
+						<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
+						<a className="btn back" href="/#choose-subject">Back</a>
+					</div>
 					<div className="filters" style={{'--subject': subject.subject.colour}}>
 
 						<ul>
@@ -84,11 +94,13 @@ class PageTemplate extends Component {
 								)
 							})}
 						</ul>
-						<div className="popup">
-							<button className="close btn" onClick={()=>{closeHelp()}}><XCircle /><span>Close</span></button>
-							<img src={avatars[Math.floor(Math.random()*avatars.length)]} />
-							<blockquote dangerouslySetInnerHTML={{__html: popup.content}} />
-						</div>
+						{!returningUser && 
+							<div className="popup">
+								<button className="close btn" onClick={()=>{closeHelp()}}><XCircle /><span>Close</span></button>
+								<img src={avatars[Math.floor(Math.random()*avatars.length)]} />
+								<blockquote dangerouslySetInnerHTML={{__html: popup.content}} />
+							</div>
+						}
 					</div>
 				</FilterLayout>
 			</Layout>
@@ -104,6 +116,9 @@ export const pageQuery = graphql`
 			subject(id: $id) {
 				slug
 				title(format: RENDERED)
+				commonWheelProperties {
+					code
+				}
 				subject {
 					colour
 					sentences {
@@ -123,7 +138,7 @@ export const pageQuery = graphql`
 					}
 				}
 			}
-			careers(where: {nameIn: $careers}) {
+			careers(where: {nameIn: $careers}, last: 200) {
 				edges {
 					node {
 						title

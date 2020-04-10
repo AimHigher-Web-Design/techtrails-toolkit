@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import JobTile from './jobTiles'
 
-const FilterLayout = ({title, subject, jobs, children}) => {
+const FilterLayout = ({title, subject, subjectCode, jobs, children}) => {
 	
 	if(!title) {
 		title = `${subject} Careers` || 'Search Results'
@@ -16,7 +16,8 @@ const FilterLayout = ({title, subject, jobs, children}) => {
 					{jobs.map(job => {
 						const details = {
 							...job.node,
-							subject: subject
+							subject: subject,
+							subjectCode: subjectCode || 'careers'
 						}
 
 						return (

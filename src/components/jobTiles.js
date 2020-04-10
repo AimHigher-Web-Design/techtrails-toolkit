@@ -4,27 +4,38 @@ import {X, ExternalLink} from 'react-feather'
 
 import '../scss/components/jobTile.scss';
 
-const JobTile = ({commonWheelProperties, slug, careerFields, content, title, subject, relatedAlignments}) => {
+const JobTile = ({commonWheelProperties, slug, careerFields, content, title, subject, subjectCode, relatedAlignments}) => {
 	const code = commonWheelProperties.code || slug,
-	{ featuredImage, links, skills, videoThumbnail, videoUrl } = careerFields
+	{ featuredImage, links, skills, videoThumbnail, videoUrl } = careerFields,
+	openJob = (job) => {
+		document.querySelector(`.overlay#${job}`).style.display = 'block'
+	},
+	closeJob = (job) => {
+		document.querySelector(`.overlay#${job}`).style.display = 'none'
+	}
 
-	let tags = []
+	let tags = [],
+	path = `/careers`
 
 	relatedAlignments.alignments.forEach(a => {
 		tags.push(a.commonWheelProperties.code)
 	})
 
+	if(subject) {
+		path = `/subject/${subjectCode}`
+	}
+
 	return (
 		<Fragment>
 			<div className="tile" data-tags={tags}>
-				<a href={`#${code}`}>
+				<button onClick={() => {openJob(code)}}>
 					<img src={featuredImage.sourceUrl} />
 					<div className="title">{title}</div>
-				</a>
+				</button>
 			</div>
 			<div className="overlay"  id={code}>
 				<section className="modal">
-					<a className="close btn" href="#">{<X/>}<span>Close</span></a>
+					<button className="close btn" onClick={() => {closeJob(code)}}>{<X/>}<span>Close</span></button>
 					<header>
 						<h2>{title}</h2>
 						<p className="subject" dangerouslySetInnerHTML={{__html: subject}} />
