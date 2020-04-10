@@ -6,12 +6,13 @@ import FilterLayout from '../components/filterPage'
 import '../scss/components/filters.scss'
 import { XCircle } from 'react-feather'
 
-class PageTemplate extends Component {
+class PageTemplate extends Component {	
 	render() {
 		const wpgraphql = this.props.data.wpgraphql,
 			careers = wpgraphql.careers.edges,
 			subject = wpgraphql.subject,
 			popup = wpgraphql.popup,
+			images = wpgraphql.images.edges,
 			data = {
 				jobs: careers,
 				subject: subject.title
@@ -56,13 +57,22 @@ class PageTemplate extends Component {
 			closeHelp = () => {
 				document.querySelector('.filters .popup').classList.add('hidden')
 			}
+
+			let avatars = []
+
+			images.forEach(i => {
+				if(i.node.parent && i.node.parent.slug == 'avatar-popup') {
+					avatars.push(i.node.sourceUrl)
+				}
+			})
 		
 		return (
 			<Layout>
 				<FilterLayout {...data}>
+					<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
+					<a className="btn back" href="/#choose-subject">Back</a>
 					<div className="filters" style={{'--subject': subject.subject.colour}}>
-						<a className="btn back" href="/#choose-subject">Back</a>
-						<p className="desc">You can narrow your search of jobs in <span dangerouslySetInnerHTML={{__html: subject.title}} /> by moving between the three sections as demonstrated by the avatar. If you want to go back and explore a different area, press the back button.</p>
+
 						<ul>
 							{subject.subject.sentences.map(s => {
 								let tags = []
@@ -72,13 +82,13 @@ class PageTemplate extends Component {
 								})
 
 								return (
-									<li><button key={s.id} dangerouslySetInnerHTML={{__html: s.title}} onClick={(e) => {toggleFilter(tags, e)}} /></li>
+									<li key={s.id}><button dangerouslySetInnerHTML={{__html: s.title}} onClick={(e) => {toggleFilter(tags, e)}} /></li>
 								)
 							})}
 						</ul>
 						<div className="popup">
 							<button className="close btn" onClick={()=>{closeHelp()}}><XCircle /><span>Close</span></button>
-							<img src={popup.featuredImage.sourceUrl} />
+							<img src={avatars[Math.floor(Math.random()*avatars.length)]} />
 							<blockquote dangerouslySetInnerHTML={{__html: popup.content}} />
 						</div>
 					</div>
@@ -154,6 +164,18 @@ export const pageQuery = graphql`
 				content(format: RENDERED)
 				featuredImage {
 					sourceUrl(size: MEDIUM)
+				}
+			}
+			images: mediaItems(first: 300) {
+				edges {
+					node {
+						sourceUrl(size: MEDIUM)
+						parent {
+							... on WPGraphQL_Page {
+								slug
+							}
+						}
+					}
 				}
 			}
 		}

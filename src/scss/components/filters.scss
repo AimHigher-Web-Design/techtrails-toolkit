@@ -3,36 +3,13 @@
 .filters {
 	background: $grey_light;
 	border-top: 5px solid var(--subject);
+	clear: both;
 	margin: 0 auto;
 	padding: 20px 20px 30px;
 	position: relative;
 	max-width: 1200px;
 
 	@extend %reset-list;
-
-	.back.btn {
-		background: $grey_light;
-		border: 1px solid $white;
-		color: $grey;
-		font-size: 0.8em;
-		margin: 0;
-		position: absolute;
-		top: 10px;
-		left: 10px;
-
-		&:active, &:hover, &:focus {
-			background: $grey_mid;
-			border-color: $grey_mid;
-		}
-	}
-
-	.desc {
-		font-size: 0.8em;
-		grid-column: 1 / -1;
-		margin: 0 auto 2em;
-		text-align: center;
-		width: 80%;
-	}
 
 	ul {
 		display: grid;
@@ -115,14 +92,16 @@
 	background: $white;
 	border: 3px solid $grey;
 	display: grid;
-	grid-template-rows: auto 300px;
-	grid-template-areas: 'text' 'img';
-	padding: 20px;
-	position: absolute;
-	top: -30px;
-	right: 0;
+	grid-template-columns: 1fr 50px;
+	grid-template-rows: auto 180px;
+	grid-template-areas: 'text .' '. img';
+	padding: 30px 20px 20px;
+	position: fixed;
+	top: 20vh;
+	right: 10px;
 	max-width: 400px;
 	z-index: 100;
+	overflow: hidden;
 
 	&.hidden {
 		display: none;
@@ -130,17 +109,17 @@
 
 	.close {
 		background: $white;
-		border: 2px solid $grey;
+		border: 2px solid $white;
 		border-radius: 50%;
 		display: flex;
 		align-items: center;
-		justify-content: center;;
+		justify-content: center;
 		padding: 0;
 		position: absolute;
 		height: 40px;
 		width: 40px;
-		right: -20px;
-		top: -20px;
+		right: 0;
+		top: 0;
 
 		span {
 			position: absolute;
@@ -156,7 +135,11 @@
 	img {
 		grid-area: img;
 		justify-self: end;
-		max-height: 300px;
+		max-height: 180px;
+		margin-top: 0;
+		position: relative;
+		max-width: 200px;
+		z-index: 10;
 	}
 
 	blockquote {
@@ -166,17 +149,17 @@
 		border: none;
 		border-radius: 20px;
 		color: $white;
-		font-size: 0.7em;
+		font-size: 0.8em;
 		grid-area: text;
 		justify-self: start;
 		padding: 30px;
-		margin: 0 $size $size 0;
+		margin: 0 0;
 		position: relative;
 
 		&:before {
 			content: "";
 			position: absolute;
-			right: $size;
+			right: $size * 2;
 			bottom: (-1 * $size) + 20px;
 			width: 0;
 			height: 0;
@@ -188,6 +171,37 @@
 		.wp-block-buttons {
 			a {
 				font-size: 1em;
+			}
+		}
+	}
+}
+
+@media(min-width: 480px) {
+	.popup {
+		overflow: visible;
+		right: 5vw;
+
+		.close {
+			right: -20px;
+			top: -20px;
+		}
+	}
+}
+
+@media(min-width: 600px) {
+	.popup {
+		grid-template-columns: 1fr 100px;
+		top: 30vh;
+		width: 90vw;
+		max-width: 600px;
+
+		img {
+			margin-top: -20px;
+		}
+
+		blockquote {
+			&:before {
+				right: 50px;
 			}
 		}
 	}

@@ -8,7 +8,7 @@ const FilterLayout = ({title, subject, jobs, children}) => {
 	}
 
 	return (
-		<Fragment>
+		<div className="container">
 			<h1 dangerouslySetInnerHTML={{__html: title}} />	
 			{children}
 			<section className="jobs">
@@ -25,7 +25,7 @@ const FilterLayout = ({title, subject, jobs, children}) => {
 					})}
 				</div>
 			</section>
-		</Fragment>
+		</div>
 	)
 }
 

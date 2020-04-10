@@ -4,6 +4,12 @@ main {
 	--background: url('/img/background.png');
 
 	margin: 0 auto;
+
+	> .container {
+		margin: 0 auto;
+		width: 90vw;
+		max-width: 1200px;
+	}
 }
 
 .colour-container {
@@ -368,6 +374,32 @@ main {
 		}
 	}
 }
+
+.desc {
+	clear: both;
+	font-size: 0.8em;
+	grid-column: 1 / -1;
+	margin: 0 auto;
+	text-align: center;
+	width: 80%;
+}
+
+.back.btn {
+	background: $grey_light;
+	border: 2px solid $orange;
+	color: $grey;
+	font-size: 0.8em;
+	float: right;
+	margin: 10px 0;
+	margin-left: auto;
+	text-align: right;
+
+	&:active, &:hover, &:focus {
+		background: $orange;
+		color: $white;
+	}
+}
+
 
 @media(min-width: 480px) {
 	.colour-container {

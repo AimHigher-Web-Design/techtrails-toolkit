@@ -2,7 +2,7 @@ exports.createPages = async function({ actions, graphql }) {
 	await graphql(`
 		{
 			wpgraphql {
-				pages(first: 100) {
+				pages(first: 200) {
 					edges {
 						node {
 							id
@@ -11,7 +11,7 @@ exports.createPages = async function({ actions, graphql }) {
 						}
 					}
 				}
-				subjects {
+				subjects(first: 200) {
 					edges {
 						node {
 							id
