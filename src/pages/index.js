@@ -12,7 +12,6 @@ export default class IndexPage extends React.Component {
 		return (
 			<Layout classes="home">
 				<div dangerouslySetInnerHTML={{__html: pageContent }} />
-				<FilterForm/>
 			</Layout>
 		)
 	}

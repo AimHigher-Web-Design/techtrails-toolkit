@@ -4,10 +4,10 @@ import Layout from '../components/layout'
 
 class PageTemplate extends Component {
 	render() {
-		const currentPage = this.props.data.wordpressPage,
+		const currentPage = this.props.data.wpgraphql.page,
 			meta = {
 				name: currentPage.title,
-				slug: this.props.location.pathname,
+				slug: currentPage.slug,
 			}
 
 		return (

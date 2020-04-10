@@ -1,11 +1,10 @@
 import React, {Fragment} from 'react'
 import JobTile from './jobTiles'
 
-const FilterLayout = ({title, jobs, children}) => {
-	const subject = title
-
-	if(!subject) {
-		title = 'Search Results'
+const FilterLayout = ({title, subject, jobs, children}) => {
+	
+	if(!title) {
+		title = subject || 'Search Results'
 	}
 
 	return (

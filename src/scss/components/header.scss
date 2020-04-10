@@ -8,6 +8,7 @@ header {
 	background: $yellow;
 	display: flex;
 	justify-content: space-between;
+	margin: 0 auto;
 	margin-top: $margin;
 	padding: 20px 5vw;
 	position: relative;
@@ -53,5 +54,11 @@ header {
 			font-size: 1em;
 			text-transform: uppercase;
 		}
+	}
+}
+
+@media(min-width:1300px) {
+	header {
+		padding: 20px calc(50vw - 600px);
 	}
 }

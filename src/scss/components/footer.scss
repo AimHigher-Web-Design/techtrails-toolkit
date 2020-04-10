@@ -19,14 +19,12 @@ footer {
 	}
 
 	nav {
+		max-width: 600px;
+
 		ul {
 			columns: 2 auto;
 		}
 
-		a {
-			display: inline-block;
-			padding: 5px;
-		}
 	}
 
 	.social {
@@ -51,5 +49,11 @@ footer {
 
 	.copyright {
 		text-align: center;
+	}
+}
+
+@media(min-width:1200px) {
+	footer {
+		padding: 20px calc(50vw - 500px);
 	}
 }

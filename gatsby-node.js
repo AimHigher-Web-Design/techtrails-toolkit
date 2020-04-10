@@ -69,7 +69,9 @@ exports.createPages = async function({ actions, graphql }) {
 		}
 	`).then(res => {
 		res.data.wpgraphql.pages.edges.forEach(edge => {
-			if(edge.node.isFrontPage) {
+			// If any of the WordPress pages aren't meant to be content pages, include them in the array
+			if(edge.node.isFrontPage || ['footer', 'avatar-popup'].includes(edge.node.slug)) {
+				console.log(`Not generating ${edge.node.slug} page`)
 				return
 			}
 

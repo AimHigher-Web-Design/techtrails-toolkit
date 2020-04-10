@@ -4,22 +4,64 @@ main {
 	--background: url('/img/background.png');
 
 	margin: 0 auto;
-	width: 90vw;
-	max-width: 1200px;
 }
 
 .colour-container {
 	background: var(--background);
-	width: 100vw;
-	margin-left: calc(50% - 50vw);
-	padding: 20px 5vw;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	background-position: center;
+	position: relative;
+	overflow: hidden;
+	width: 100vw;	
+
+	&:before, &:after {
+		border-radius: 50%;
+		content: '';
+		position: absolute;
+		height: 200px;
+		width: 200px;
+		z-index: -1;
+	}
+
+	&:before {
+		background: $blue;
+		top: 70px;
+		left: -120px;
+	}
+
+	&:after {
+		background: $green;
+		height: 250px;
+		width: 250px;
+		bottom: 100px;
+		right: -150px;
+	}
+
+	> .container {
+		padding: 20px 5vw;
+		max-width: 1200px;
+		margin: 0 auto;
+
+		&:before {
+			background: $orange;
+			border-radius: 50%;
+			content: '';
+			position: absolute;
+			height: 400px;
+			width: 400px;
+			bottom: -320px;
+			left: calc(50% - 200px);
+			z-index: -1;
+		}
+	}
 }
 
 .avatar-speech {
 	display: grid;
 	grid-template-columns: repeat(2, auto);
 	grid-template-rows: repeat(3, auto);
-	grid-template-areas: '. text' 'img text' 'img .';
+	grid-template-areas: 'text .' 'text img' '. img';
 
 	img {
 		grid-area: img;
@@ -41,13 +83,13 @@ main {
 		&:before {
 			content: "";
 			position: absolute;
-			left: $size;
+			right: $size;
 			bottom: (-1 * $size) + 20px;
 			width: 0;
 			height: 0;
 			border-top: $size solid $white;
-			border-right: $size solid transparent;
-			transform: rotate(10deg);
+			border-left: $size solid transparent;
+			transform: rotate(-10deg);
 		}
 	}
 }
@@ -59,6 +101,8 @@ main {
 	padding-top: 50px;
 
 	a {
+		padding-top: 20px;
+		overflow: hidden;
 		text-decoration: none;
 
 		&:nth-child(2n) {
@@ -72,9 +116,14 @@ main {
 		&:active, &:hover, &:focus {
 			background: none;
 
-			figure {
-				border: 5px solid white;
-				grid-template-rows: auto calc(3em - 10px);
+			.desc {
+				display: block;
+			}
+
+			figcaption {
+				&:before {
+					content: normal;
+				}
 			}
 		}
 	}
@@ -83,20 +132,25 @@ main {
 		background: var(--subjectBackground);
 		border-radius: 5px;
 		display: grid;
-		grid-template-rows: auto 3em;
+		grid-template-rows: 170px 3em;
 		grid-template-areas: 'img' 'name';
 		margin: 0;
 		position: relative;
 	}
 
 	img {
-		margin: -20px auto 0;
-		max-height: 320px;
+		justify-self: center;
+		margin-top: -20px;
+		width: 120%;
+		max-width: unset;
+		position: absolute;
+		z-index: 0;
 	}
 
 	figcaption {
 		color: $white;
-		background: rgba(#fff, 0.1);
+		background: var(--subjectBackground);
+		border-radius: 00 5px 5px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -106,6 +160,43 @@ main {
 		text-align: center;
 		position: relative;
 		z-index: 1;
+
+		&:before {
+			background: rgba(255, 255, 255, 0.45);
+			content: '';
+			@extend %cover;
+			z-index: -5;
+		}
+	}
+
+	.desc {
+		background: var(--subjectBackground);
+		border-radius: 5px 5px 0 0;
+		color: $white;
+		display: none;
+		font-size: 0.7em;
+		grid-area: img;
+		padding: 10px 15px;
+		position: relative;
+		text-align: center;
+		z-index: 5;
+
+		p {
+			&:first-child {
+				margin-top: 0;
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&:before {
+			background: rgba(255, 255, 255, 0.45);
+			content: '';
+			@extend %cover;
+			z-index: -5;
+		}
 	}
 }
 
@@ -143,6 +234,18 @@ main {
 
 		&[class*="maroon-background"] {
 			background: $maroon;
+		}
+
+		&[class*="grey-background"] {
+			background: $grey;
+		}
+
+		&[class*="black-background"] {
+			background: $black;
+		}
+
+		&[class*="white-background"] {
+			background: $white;
 		}
 
 		// Text Colours
@@ -210,6 +313,18 @@ main {
 
 			&[class*="maroon-background"] {
 				color: $maroon;
+			}
+
+			&[class*="grey-background"] {
+				color: $grey;
+			}
+	
+			&[class*="black-background"] {
+				color: $black;
+			}
+	
+			&[class*="white-background"] {
+				color: $white;
 			}
 
 			// Text Colours

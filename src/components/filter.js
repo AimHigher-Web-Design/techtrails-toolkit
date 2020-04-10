@@ -106,7 +106,7 @@ const FilterForm = () => (
 								<fieldset>
 									<div>
 										<legend>What's your favourite subject area?</legend>
-										<img src="http://techtrails.local/wp-content/uploads/2018/02/Technical-writer.png" />
+										<img src="https://wptoolkit.techtrails.org.au/wp-content/uploads/2018/02/Technical-writer.png" />
 										<ul className="opts subjects">
 											{subjects.map(s => (
 												<li key={s.node.commonWheelProperties.code}>
@@ -135,7 +135,7 @@ const FilterForm = () => (
 									<fieldset key={s.node.commonWheelProperties.code} className="sentences" data-subject={s.node.commonWheelProperties.code}>
 										<div>
 											<legend>Which sentence describes you best?</legend>
-											<img src="http://techtrails.local/wp-content/uploads/2018/02/Technical-writer.png" />
+											<img src="https://wptoolkit.techtrails.org.au/wp-content/uploads/2018/02/Technical-writer.png" />
 											<ul className="opts">
 												{s.node.subject.sentences.map(sent => (
 													<li key={sent.commonWheelProperties.code}>

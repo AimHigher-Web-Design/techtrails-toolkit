@@ -35,7 +35,7 @@ module.exports = {
 			options: {
 			  typeName: `WPGraphQL`,
 			  fieldName: `wpgraphql`,
-			  url: `http://techtrails.local/graphql`,
+			  url: `${process.env.WP_URL}/graphql`,
 			  refetchInterval: 300,
 			},
 		},
