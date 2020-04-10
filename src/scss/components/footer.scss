@@ -5,7 +5,7 @@ footer {
 	color: $grey;
 	font-size: 0.8em;
 	display: grid;
-	grid-template-columns: 1fr 240px;
+	justify-items: center;
 	grid-gap: 20px;
 	padding: 20px 5vw;
 
@@ -19,6 +19,7 @@ footer {
 	}
 
 	nav {
+		width: 100%;
 		max-width: 600px;
 
 		ul {
@@ -28,9 +29,12 @@ footer {
 	}
 
 	.social {
+		max-width: 200px;
+
 		ul {
 			display: flex;
 			flex-wrap: wrap;
+			justify-content: space-between;
 		}
 
 		a {
@@ -51,6 +55,29 @@ footer {
 
 	.copyright {
 		text-align: center;
+	}
+
+	.witwa-logo {
+		width: 200px;
+	}
+}
+
+@media (min-width: 560px) {
+	footer {
+		grid-template-columns: 1fr 240px;
+		justify-items: stretch;
+
+		nav {
+			width: auto;
+		}
+	}
+}
+
+@media (min-width: 800px) {
+	footer {
+		.witwa-logo {
+			width: 300px;
+		}
 	}
 }
 
