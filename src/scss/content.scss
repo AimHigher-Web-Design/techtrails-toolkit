@@ -59,29 +59,29 @@ main {
 
 .avatar-speech {
 	display: grid;
-	grid-template-columns: repeat(2, auto);
-	grid-template-rows: repeat(3, auto);
-	grid-template-areas: 'text .' 'text img' '. img';
+	grid-template-areas: 'text' 'img';
+	grid-gap: 20px;
 
 	img {
+		display: none;
 		grid-area: img;
 		max-height: 300px;
 	}
 
 	blockquote {
-		$size: 100px;
+		$size: 70px;
 
 		background: $white;
 		border: none;
 		border-radius: 20px;
 		color: $main;
+		font-size: 1em;
 		grid-area: text;
 		padding: 30px;
-		margin-bottom: $size;
+		margin: 0;
 		position: relative;
 
 		&:before {
-			content: "";
 			position: absolute;
 			right: $size;
 			bottom: (-1 * $size) + 20px;
@@ -375,12 +375,50 @@ main {
 			padding: 40px 5vw;
 		}
 	}
+
+	.avatar-speech {
+		grid-template-areas: 'text img';
+		align-items: center;
+
+		img {
+			display: block;
+		}
+	}
 }
 
 @media(min-width: 800px) {
 	.colour-container {
 		> .container {
 			padding: 80px 5vw;
+		}
+	}
+
+	.avatar-speech {
+		grid-template-columns: auto 100px;
+		grid-template-rows: repeat(3, auto);
+		grid-template-areas: 'text .' 'text img' '. img';
+		grid-gap: 0;
+
+		blockquote {
+			$size: 50px;
+
+			margin-bottom: $size;
+			margin-left: auto;
+			max-width: 800px;
+			z-index: 0;
+
+			&:before {
+				content: '';
+			}
+		}
+
+		img {
+			margin-left: -100px;
+			margin-top: 20px;
+			position: relative;
+			width: 200px;
+			max-width: unset;
+			z-index: 5;
 		}
 	}
 
