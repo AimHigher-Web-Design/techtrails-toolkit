@@ -13,7 +13,7 @@
 
 	> .container {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 		grid-gap: 20px;
 		margin: 0 auto;
 		padding: 20px;
@@ -21,8 +21,10 @@
 	}
 
 	.tile {
+		margin: 0 auto;
 		padding-top: 20px;
 		overflow: hidden;
+		max-width: 200px;
 
 		button {
 			border: 1px solid $grey_light;
@@ -68,7 +70,7 @@
 			justify-content: center;
 			color: $main;
 			min-height: 2.5em;
-			padding-bottom: 2px;
+			padding: 0 5px 2px;
 			position: absolute;
 			bottom: 0;
 			left: 0;
@@ -121,10 +123,11 @@
 		background: $blue url('/img/background.png');
 		background-size: cover;
 		display: grid;
-		grid-template-rows: 1fr 2em;
-		grid-template-areas: 'title img' 'subject img';
+		grid-template-columns: 1fr;
+		grid-template-areas: 'title' 'subject' 'img';
 		align-items: start;
 		margin: 0;
+		width: 100%;
 		padding: 10px 20px;
 
 		&:before {
@@ -139,10 +142,10 @@
 		}
 
 		img {
+			justify-self: center;
 			grid-area: img;
-			position: relative;
-			top: -80px;
-			width: 280px;
+			margin-top: 20px;
+			width: 200px;
 			z-index: 0;
 		}
 
@@ -156,8 +159,7 @@
 		background: $white;
 		color: $grey;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-areas: 'desc resHead' 'desc res' 'desc skillHead' 'desc skills' 'desc video';
+		grid-template-areas: 'desc' 'resHead' 'res' 'skillHead' 'skills' 'video';
 		grid-auto-rows: max-content;
 		grid-column-gap: 20px;
 		grid-row-gap: 1em;
@@ -238,3 +240,28 @@
 	}
 }
 
+@media(min-width: 600px) {
+	.jobs {
+		> .container {
+			grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+		}
+
+		.modal {
+			header {
+				grid-template-rows: 1fr 2em;
+				grid-template-areas: 'title img' 'subject img';
+
+				img {
+					position: relative;
+					top: -80px;
+					width: 280px;
+				}
+			}
+
+			.content {
+				grid-template-columns: 1fr 1fr;
+				grid-template-areas: 'desc resHead' 'desc res' 'desc skillHead' 'desc skills' 'desc video';
+			}
+		}
+	}
+}

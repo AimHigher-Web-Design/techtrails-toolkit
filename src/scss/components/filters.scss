@@ -25,17 +25,10 @@
 		
 		&:after {
 			border-left: 4.5px dotted $grey;
-			content: '';
 			position: absolute;
 			right: -20px;
 			// top: 5px;
 			height: 37px;
-		}
-
-		&:last-child {
-			&:after {
-				content: normal;
-			}
 		}
 	}
 
@@ -202,6 +195,22 @@
 		blockquote {
 			&:before {
 				right: 50px;
+			}
+		}
+	}
+}
+
+@media(min-width: 800px) {
+	.filters {
+		li {
+			&:after {
+				content: '';
+			}
+
+			&:last-child {
+				&:after {
+					content: normal;
+				}
 			}
 		}
 	}
