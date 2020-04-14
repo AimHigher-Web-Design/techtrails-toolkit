@@ -7,6 +7,14 @@ import '../scss/components/filters.scss'
 import { XCircle } from 'react-feather'
 
 class PageTemplate extends Component {	
+	componentDidMount () {
+		console.log('component mounted')
+		if (typeof window !== `undefined` && !window.localStorage.getItem('returningUser')) {
+			console.log('not returning user')
+			document.querySelector('.filters .popup').classList.add('open')
+		}
+	}
+
 	render() {
 		const wpgraphql = this.props.data.wpgraphql,
 			careers = wpgraphql.careers.edges,
@@ -55,7 +63,7 @@ class PageTemplate extends Component {
 				})
 			},
 			closeHelp = () => {
-				document.querySelector('.filters .popup').classList.add('hidden')
+				document.querySelector('.filters .popup').classList.remove('open')
 				if (typeof window !== `undefined`) {
 					window.localStorage.setItem('returningUser', true)
 				}

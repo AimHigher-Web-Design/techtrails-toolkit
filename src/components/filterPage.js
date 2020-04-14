@@ -21,7 +21,7 @@ const FilterLayout = ({title, subject, subjectCode, jobs, children}) => {
 						}
 
 						return (
-							<JobTile key={job.node.commonWheelProperties.code} {...details} />
+							<JobTile key={job.node.slug} {...details} />
 						)
 					})}
 				</div>

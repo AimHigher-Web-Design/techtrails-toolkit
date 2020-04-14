@@ -84,7 +84,7 @@
 .popup {
 	background: $white;
 	border: 3px solid $grey;
-	display: grid;
+	display: none;
 	grid-template-columns: 1fr 50px;
 	grid-template-rows: auto 180px;
 	grid-template-areas: 'text .' '. img';
@@ -96,8 +96,8 @@
 	z-index: 100;
 	overflow: hidden;
 
-	&.hidden {
-		display: none;
+	&.open {
+		display: grid;
 	}
 
 	.close {
